@@ -30,8 +30,8 @@ const Header = ({ navbarLinks, socialLinks, siteLogo }) => {
 
         {/* second header */}
         <div
-          className={`fixed w-full top-0 left-0 px-8 bg-black bg-opacity-80 flex items-center transform ${
-            headerOnScreen ? "-translate-y-full" : ""
+          className={`secondary fixed w-full top-0 left-0 px-8 bg-black bg-opacity-80 flex items-center transform ${
+            !headerOnScreen ? "" : "-translate-y-full"
           }`}
         >
           <Link href="/">
@@ -39,6 +39,7 @@ const Header = ({ navbarLinks, socialLinks, siteLogo }) => {
               image={siteLogo.logo.data}
               sizes="10vw"
               className="w-24"
+              priority
             />
           </Link>
           <ul className="flex justify-center items-center flex-grow">

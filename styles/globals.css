@@ -20,6 +20,9 @@ header a {
 header .navlink a {
   padding: calc(1.5vw);
 }
+header .secondary {
+  animation: 0.8s 3s ease-in 1 normal fadeIn forwards;
+}
 
 .slider .arrow {
   @apply w-10 h-10 duration-300 opacity-80 hover:opacity-100;
