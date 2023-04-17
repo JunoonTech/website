@@ -2,26 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import url(https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap);
+* {
+  @apply transition-all;
+}
+body {
+  @apply text-white m-0;
+  font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+header a {
+  @apply text-white hover:text-opacity-75;
+}
+
+header .navlink a {
+  padding: calc(1.5vw);
+}
+
+.slider .arrow {
+  @apply w-10 h-10 duration-300 opacity-80 hover:opacity-100;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+.slider:hover .arrows {
+  @apply md:opacity-100;
+}
+.slider .arrows {
+  @apply opacity-0 duration-300;
+}
+.slider .imgs {
+  @apply opacity-0;
+  animation: 0.8s 0.2s ease-in 1 normal fadeIn forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.hero h1 {
+  @apply font-medium mb-[1vw] transform -translate-y-1/4 opacity-0;
+  font-size: calc(2rem + 1.5vw);
+  animation: 0.5s 1s ease-in 1 normal slideDown forwards;
+}
+@keyframes slideDown {
+  from {
+    transform: translateY(-25%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.hero h2 {
+  @apply mb-[2.2vw] transform -translate-x-10 opacity-0 whitespace-nowrap;
+  font-size: calc(1rem + 0.7vw);
+  animation: 0.5s 1.5s ease-in 1 normal slideRight forwards;
+}
+@keyframes slideRight {
+  from {
+    transform: translateX(-2.5rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.hero a {
+  @apply transform translate-y-10 opacity-0;
+  padding: calc(0.75rem + 0.47vw) calc(2rem + 0.5vw);
+  animation: 0.5s 2s ease-in 1 normal slideUp forwards;
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(2.5rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.stats .number {
+  font-size: 550%;
+}
+
+.story > a {
+  padding: calc(0.5rem + 0.3vw) calc(1.5rem + 0.45vw);
 }
