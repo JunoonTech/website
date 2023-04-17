@@ -16,6 +16,20 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
   const numsOnScreen = useOnScreen(numsRef);
 
   const { hero, about, featured, story } = homeData;
+
+  const renderedHero = (
+    <div className="hero flex flex-col items-center">
+      <h1 className="head">{hero.head}</h1>
+      <h2 className="subhead">{hero.subhead}</h2>
+      <Link
+        href={hero.buttonLink}
+        target="_blank"
+        className="font-bold text-sm bg-white text-[#303030] rounded-full hover:text-neon-green"
+      >
+        {hero.buttonText}
+      </Link>
+    </div>
+  );
   return (
     <main className="bg-dark">
       <Div100vh>
@@ -25,22 +39,12 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
             socialLinks={socialLinks}
             siteLogo={siteLogo}
           />
-          <div className="absolute top-0 left-0 w-full h-full">
-            <Slider
-              images={hero.sliderImages.data}
-              mobileImages={hero.sliderImagesMobile.data}
-            >
-              <div className="hero flex flex-col items-center">
-                <h1 className="head">{hero.head}</h1>
-                <h2 className="subhead">{hero.subhead}</h2>
-                <Link
-                  href={hero.buttonLink}
-                  target="_blank"
-                  className="font-bold text-sm bg-white text-[#303030] rounded-full hover:text-neon-green"
-                >
-                  {hero.buttonText}
-                </Link>
-              </div>
+          <div className="hidden md:block absolute top-0 left-0 w-full h-full">
+            <Slider images={hero.sliderImages.data}>{renderedHero}</Slider>
+          </div>
+          <div className="md:hidden absolute top-0 left-0 w-full h-full">
+            <Slider images={hero.sliderImagesMobile.data}>
+              {renderedHero}
             </Slider>
           </div>
         </div>
