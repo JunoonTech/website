@@ -72,6 +72,7 @@ const Slider = ({ images, children }) => {
                 }}
                 className="delay-300 duration-[2000ms] ease-in-out"
                 sizes="100vw"
+                priority
               />
             </div>
           );
@@ -110,6 +111,7 @@ const Slider = ({ images, children }) => {
                     objectPosition: "center",
                   }}
                   className="rounded-full"
+                  priority
                 />
 
                 <div

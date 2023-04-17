@@ -12,7 +12,7 @@ const Header = ({ navbarLinks, socialLinks, siteLogo }) => {
     <header className="z-50 relative" ref={headerRef}>
       <div className="hidden py-4 px-8 md:flex justify-center items-center">
         <Link href="/" className="max-w-xs">
-          <RenderImage image={siteLogo.logo.data} sizes="25vw" />
+          <RenderImage image={siteLogo.logo.data} sizes="25vw" priority />
         </Link>
         <ul className="flex justify-center items-center flex-grow">
           {navbarLinks &&
@@ -62,6 +62,7 @@ const Header = ({ navbarLinks, socialLinks, siteLogo }) => {
               image={siteLogo.logo.data}
               sizes="10vw"
               className="w-24"
+              priority
             />
           </Link>
           <button onClick={() => setMenuOpen((menuOpen) => !menuOpen)}>
