@@ -50,8 +50,9 @@ header .secondary {
 }
 
 .hero h1 {
-  @apply font-medium mb-[1vw] transform -translate-y-1/4 opacity-0;
-  font-size: calc(2rem + 1.5vw);
+  @apply font-medium transform -translate-y-1/4 opacity-0;
+  margin-bottom: calc(0.5rem + 0.5vw);
+  font-size: calc(1rem + 2.5vw);
   animation: 0.5s 1s ease-in 1 normal slideDown forwards;
 }
 @keyframes slideDown {
@@ -66,8 +67,9 @@ header .secondary {
   }
 }
 .hero h2 {
-  @apply mb-[2.2vw] transform -translate-x-10 opacity-0 whitespace-nowrap;
-  font-size: calc(1rem + 0.7vw);
+  @apply transform -translate-x-10 opacity-0 whitespace-nowrap;
+  margin-bottom: calc(0.5rem + 1.8vw);
+  font-size: calc(0.5rem + 1.3vw);
   animation: 0.5s 1.5s ease-in 1 normal slideRight forwards;
 }
 @keyframes slideRight {
@@ -83,7 +85,7 @@ header .secondary {
 }
 .hero a {
   @apply transform translate-y-10 opacity-0;
-  padding: calc(0.75rem + 0.47vw) calc(2rem + 0.5vw);
+  padding: calc(0.7rem + 0.7vw) calc(1.8rem + 0.7vw);
   animation: 0.5s 2s ease-in 1 normal slideUp forwards;
 }
 @keyframes slideUp {

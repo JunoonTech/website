@@ -16,7 +16,6 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
   const numsOnScreen = useOnScreen(numsRef);
 
   const { hero, about, featured, story } = homeData;
-
   return (
     <main className="bg-dark">
       <Div100vh>
@@ -27,7 +26,10 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
             siteLogo={siteLogo}
           />
           <div className="absolute top-0 left-0 w-full h-full">
-            <Slider images={hero.sliderImages.data}>
+            <Slider
+              images={hero.sliderImages.data}
+              mobileImages={hero.sliderImagesMobile.data}
+            >
               <div className="hero flex flex-col items-center">
                 <h1 className="head">{hero.head}</h1>
                 <h2 className="subhead">{hero.subhead}</h2>

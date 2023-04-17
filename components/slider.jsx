@@ -5,7 +5,7 @@ import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
 let startTime;
 
-const Slider = ({ images, children }) => {
+const Slider = ({ images, mobileImages, children }) => {
   const totalImages = images.length;
   const [toShow, setToShow] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -53,12 +53,39 @@ const Slider = ({ images, children }) => {
   return (
     <div className="slider w-full h-full relative fl">
       <div
-        className="imgs absolute top-0 left-0 w-full h-full"
+        className="imgs hidden md:block absolute top-0 left-0 w-full h-full"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         {images.map((image, idx) => {
+          const display = idx === toShow;
+          return (
+            <div key={image.id} className="absolute top-0 left-0 w-full h-full">
+              <RenderImage
+                image={image}
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  opacity: display ? "100" : "0",
+                }}
+                className="delay-300 duration-[2000ms] ease-in-out"
+                sizes="100vw"
+                priority
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      <div
+        className="imgs md:hidden absolute top-0 left-0 w-full h-full"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        {mobileImages.map((image, idx) => {
           const display = idx === toShow;
           return (
             <div key={image.id} className="absolute top-0 left-0 w-full h-full">
