@@ -110,3 +110,7 @@ header .secondary {
 .story > a {
   padding: calc(0.5rem + 0.3vw) calc(1.5rem + 0.45vw);
 }
+
+.btn {
+  @apply inline-block border px-6 py-3 border-white rounded-full text-white font-bold uppercase text-sm hover:bg-[#8ec36e];
+}
