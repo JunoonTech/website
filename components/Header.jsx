@@ -10,12 +10,12 @@ const Header = ({ navbarLinks, socialLinks, logo, white }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className={`z-50 relative ${white ? "white" : ""}`} ref={headerRef}>
-      <div className="hidden py-4 px-8 md:flex justify-center items-center">
+    <header className={`relative z-50 ${white ? "white" : ""}`} ref={headerRef}>
+      <div className="hidden items-center justify-center px-8 py-4 md:flex">
         <Link href="/" className="max-w-xs">
           <RenderImage image={logo.data} sizes="25vw" priority />
         </Link>
-        <ul className="flex justify-center items-center flex-grow">
+        <ul className="flex grow items-center justify-center">
           {navbarLinks &&
             navbarLinks.map((navbarLink) => (
               <li key={navbarLink.id} className="navlink font-bold">
@@ -31,11 +31,9 @@ const Header = ({ navbarLinks, socialLinks, logo, white }) => {
 
         {/* second header */}
         <div
-          className={`secondary fixed w-full top-0 left-0 px-8 ${
-            white ? "bg-black bg-opacity-80" : "bg-white"
-          }  flex items-center transform ${
-            !headerOnScreen ? "" : "-translate-y-full"
-          }`}
+          className={`secondary fixed left-0 top-0 w-full px-8 ${
+            white ? "bg-black/80" : "bg-white"
+          }  flex items-center ${!headerOnScreen ? "" : "-translate-y-full"}`}
         >
           <Link href="/">
             <RenderImage
@@ -45,10 +43,10 @@ const Header = ({ navbarLinks, socialLinks, logo, white }) => {
               priority
             />
           </Link>
-          <ul className="flex justify-center items-center flex-grow">
+          <ul className="flex grow items-center justify-center">
             {navbarLinks &&
               navbarLinks.map((navbarLink) => (
-                <li key={navbarLink.id} className="py-4 px-4 font-bold">
+                <li key={navbarLink.id} className="p-4 font-bold">
                   <Link href={navbarLink.attributes.link}>
                     {navbarLink.attributes.name}
                   </Link>
@@ -60,7 +58,7 @@ const Header = ({ navbarLinks, socialLinks, logo, white }) => {
       </div>
 
       <div className={`block md:hidden ${white ? "bg-[#161616]" : ""}`}>
-        <div className="flex justify-between items-center py-6 px-8">
+        <div className="flex items-center justify-between px-8 py-6">
           <Link href="/">
             <RenderImage
               image={logo.data}
@@ -70,23 +68,23 @@ const Header = ({ navbarLinks, socialLinks, logo, white }) => {
             />
           </Link>
           <button onClick={() => setMenuOpen((menuOpen) => !menuOpen)}>
-            <div className={`w-7 h-5 relative`}>
+            <div className={`relative h-5 w-7`}>
               <div
-                className={`absolute w-full h-1 ${
+                className={`absolute h-1 w-full ${
                   white ? "bg-white" : "bg-black"
-                } transform origin-center ${
+                } origin-center ${
                   menuOpen ? "top-1/2 -translate-y-1/2 rotate-45" : "top-0"
                 }`}
               />
               <div
-                className={`absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 h-1 ${
+                className={`absolute left-1/2 top-1/2 h-1 -translate-x-1/2 -translate-y-1/2 ${
                   white ? "bg-white" : "bg-black"
                 } ${menuOpen ? "w-0" : "w-full"}`}
               />
               <div
-                className={`absolute w-full h-1 ${
+                className={`absolute h-1 w-full ${
                   white ? "bg-white" : "bg-black"
-                } transform origin-center ${
+                } origin-center ${
                   menuOpen
                     ? "bottom-1/2 translate-y-1/2 -rotate-45"
                     : "bottom-0"

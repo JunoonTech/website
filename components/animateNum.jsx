@@ -7,7 +7,7 @@ const AnimateNum = ({ value }) => {
       return;
     }
     let startTime;
-    let start = toShow;
+    const start = toShow;
 
     const step = (ts) => {
       if (!startTime) {

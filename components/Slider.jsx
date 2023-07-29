@@ -48,9 +48,9 @@ const Slider = ({ images, children }) => {
     }
   };
   return (
-    <div className="slider w-full h-full relative fl">
+    <div className="slider relative h-full w-full">
       <div
-        className="imgs absolute top-0 left-0 w-full h-full"
+        className="imgs absolute left-0 top-0 h-full w-full"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -58,7 +58,7 @@ const Slider = ({ images, children }) => {
         {images.map((image, idx) => {
           const display = idx === toShow;
           return (
-            <div key={image.id} className="absolute top-0 left-0 w-full h-full">
+            <div key={image.id} className="absolute left-0 top-0 h-full w-full">
               <RenderImage
                 image={image}
                 fill
@@ -75,7 +75,7 @@ const Slider = ({ images, children }) => {
           );
         })}
       </div>
-      <div className="arrows z-30 absolute top-1/2 transform -translate-y-1/2 w-full flex justify-between px-5">
+      <div className="arrows absolute top-1/2 z-30 flex w-full -translate-y-1/2 justify-between px-5">
         <button className="leftArrow" onClick={prevImage}>
           <BsArrowLeftCircleFill className="arrow" />
         </button>
@@ -83,21 +83,21 @@ const Slider = ({ images, children }) => {
           <BsArrowRightCircleFill className="arrow" />
         </button>
       </div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         {children}
       </div>
 
       <div
-        className="w-full h-1/2 max-h-[200px] absolute bottom-0 left-0 bg-repeat-x"
+        className="absolute bottom-0 left-0 h-1/2 max-h-[200px] w-full bg-repeat-x"
         style={{ backgroundImage: "url(/gradient.png)" }}
       >
-        <div className="thumbs absolute bottom-[2vh] left-1/2 transform -translate-x-1/2 grid grid-flow-col gap-2">
+        <div className="thumbs absolute bottom-[2vh] left-1/2 grid -translate-x-1/2 grid-flow-col gap-2">
           {images.map((image, idx) => {
             const display = idx === toShow;
             return (
               <button
                 key={image.id}
-                className="w-12 h-12 relative"
+                className="relative h-12 w-12"
                 onClick={() => setToShow(idx)}
               >
                 <RenderImage
@@ -112,7 +112,7 @@ const Slider = ({ images, children }) => {
                 />
 
                 <div
-                  className={`absolute top-0 left-0 w-full h-full rounded-full border-2 border-white border-opacity-40 ${
+                  className={`absolute left-0 top-0 h-full w-full rounded-full border-2 border-white/40 ${
                     display ? "" : "opacity-0"
                   } `}
                 />

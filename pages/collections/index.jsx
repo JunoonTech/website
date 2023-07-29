@@ -7,51 +7,46 @@ import CollectionCard from "./CollectionCard";
 const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
   return (
     <main className="bg-[#f6f7fa] text-[#505050]">
-      <div class="slider alignTop">
-        <div class="slider-row"></div>
-      </div>
-      <div className="content-wrapper">
-        {/* header */}
-        <Header
-          logo={logos.fullBlack}
-          navbarLinks={navbarLinks}
-          socialLinks={socialLinks}
-        />
-        {/* body */}
-        <div className="pt-24">
-          {collectionGroups.map((collectionGroup) => {
-            return (
-              <div key={collectionGroup.id}>
-                <div className="m-7 text-center text-3xl font-bold ">
-                  {collectionGroup.attributes.name}
-                </div>
-                {collectionGroup.attributes.subgroups.map((subgroup) => {
-                  return (
-                    <div key={subgroup.id}>
-                      <div className="m-7 text-center text-3xl">
-                        {subgroup.name}
-                      </div>
-                      <div className="flex flex-wrap items-center justify-around">
-                        {subgroup.collections.data.map((collection) => {
-                          return (
-                            <CollectionCard
-                              key={collection.id}
-                              collection={collection}
-                              logo={logos.logoOnlyWhite}
-                            />
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
-                })}
+      {/* header */}
+      <Header
+        logo={logos.fullBlack}
+        navbarLinks={navbarLinks}
+        socialLinks={socialLinks}
+      />
+      {/* body */}
+      <div className="pt-24">
+        {collectionGroups.map((collectionGroup) => {
+          return (
+            <div key={collectionGroup.id}>
+              <div className="m-7 text-center text-3xl font-bold ">
+                {collectionGroup.attributes.name}
               </div>
-            );
-          })}
-        </div>
-        {/* footer */}
-        <Footer logo={logos.fullWhite} socialLinks={socialLinks} />
+              {collectionGroup.attributes.subgroups.map((subgroup) => {
+                return (
+                  <div key={subgroup.id}>
+                    <div className="m-7 text-center text-3xl">
+                      {subgroup.name}
+                    </div>
+                    <div className="flex flex-wrap items-center justify-around">
+                      {subgroup.collections.data.map((collection) => {
+                        return (
+                          <CollectionCard
+                            key={collection.id}
+                            collection={collection}
+                            logo={logos.logoOnlyWhite}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
       </div>
+      {/* footer */}
+      <Footer logo={logos.fullWhite} socialLinks={socialLinks} />
     </main>
   );
 };

@@ -24,7 +24,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
       <Link
         href={hero.buttonLink}
         target="_blank"
-        className="font-bold text-sm bg-white text-[#303030] rounded-full hover:text-neon-green"
+        className="rounded-full bg-white text-sm font-bold text-[#303030] hover:text-neon-green"
       >
         {hero.buttonText}
       </Link>
@@ -33,48 +33,48 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
   return (
     <main className="bg-dark text-white">
       <Div100vh>
-        <div className="h-full relative">
+        <div className="relative h-full">
           <Header
             navbarLinks={navbarLinks}
             socialLinks={socialLinks}
             logo={logos.fullWhite}
             white
           />
-          <div className="hidden md:block absolute top-0 left-0 w-full h-full">
+          <div className="absolute left-0 top-0 hidden h-full w-full md:block">
             <Slider images={hero.sliderImages.data}>{renderedHero}</Slider>
           </div>
-          <div className="md:hidden absolute top-0 left-0 w-full h-full">
+          <div className="absolute left-0 top-0 h-full w-full md:hidden">
             <Slider images={hero.sliderImagesMobile.data}>
               {renderedHero}
             </Slider>
           </div>
         </div>
       </Div100vh>
-      <div className="w-9/12 mx-auto">
+      <div className="mx-auto w-9/12">
         {/* about */}
-        <div className="pt-[7vw] pb-[3vw]">
-          <h1 className="text-3xl text-center font-bold mb-[3vw]">
+        <div className="pb-[3vw] pt-[7vw]">
+          <h1 className="mb-[3vw] text-center text-3xl font-bold">
             {about.head}
           </h1>
-          <div className="w-full flex flex-col md:flex-row items-center mb-14">
-            <div className="md:w-1/2 mb-6 md:mb-0 pr-8 pl-4">
+          <div className="mb-14 flex w-full flex-col items-center md:flex-row">
+            <div className="mb-6 pl-4 pr-8 md:mb-0 md:w-1/2">
               <RenderImage
                 image={logos.logoOnlyWhite.data}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="md:w-1/2 text-xl leading-8 px-4 md:text-justify">
+            <div className="px-4 text-xl leading-8 md:w-1/2 md:text-justify">
               {about.text}
             </div>
           </div>
           <div
-            className="stats w-full flex flex-wrap justify-center px-4"
+            className="stats flex w-full flex-wrap justify-center px-4"
             ref={numsRef}
           >
             {about.stats.map((stat) => (
               <div
                 key={stat.id}
-                className="w-full sm:w-1/2 md:w-1/3 text-center"
+                className="w-full text-center sm:w-1/2 md:w-1/3"
               >
                 <span className="number">
                   <AnimateNum value={numsOnScreen ? stat.number : 0} />
@@ -87,21 +87,21 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
         </div>
 
         {/* featured shots */}
-        <div className="featured pt-[7vw] pb-[3vw]">
-          <h1 className="text-3xl text-center font-bold mb-[3vw]">
+        <div className="featured pb-[3vw] pt-[7vw]">
+          <h1 className="mb-[3vw] text-center text-3xl font-bold">
             {featured.head}
           </h1>
-          <div className="w-full grid md:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-16">
+          <div className="grid w-full gap-8 md:grid-cols-3 md:gap-y-16">
             {featured.images.map((image) => (
-              <div key={image.id} className="pt-3 pb-6 bg-darker relative">
+              <div key={image.id} className="relative bg-darker pb-6 pt-3">
                 <RenderImage
                   image={image.file.data}
                   sizes="(max-width: 768px) 100vw, 30vw"
                 />
-                <div className="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 duration-1000">
+                <div className="absolute left-0 top-0 h-full w-full opacity-0 duration-1000 hover:opacity-100">
                   {image.instaHandle && (
                     <Link
-                      className="absolute bottom-7 right-0 w-44 p-2 text-center bg-opacity-70 bg-black"
+                      className="absolute bottom-7 right-0 w-44 bg-black/70 p-2 text-center"
                       href={`https://instagram.com/${image.instaHandle}`}
                       target="_blank"
                     >
@@ -117,17 +117,17 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
 
         {/* storygram */}
 
-        <div className="story pt-[7vw] pb-[3vw] flex flex-col items-center">
-          <h1 className="text-3xl font-bold mb-[3vw]">{story.head}</h1>
-          <div className="w-full flex flex-wrap justify-center">
+        <div className="story flex flex-col items-center pb-[3vw] pt-[7vw]">
+          <h1 className="mb-[3vw] text-3xl font-bold">{story.head}</h1>
+          <div className="flex w-full flex-wrap justify-center">
             {story.storygrams.data.map((storygram) => (
               <div
                 key={storygram.id}
-                className="w-3/4 md:w-1/3 mb-8 md:mb-0 md:mx-4 bg-darker rounded-md overflow-hidden flex flex-col"
+                className="mb-8 flex w-3/4 flex-col overflow-hidden rounded-md bg-darker md:mx-4 md:mb-0 md:w-1/3"
               >
                 <Link
                   href={storygram.attributes.link}
-                  className="w-full block relative aspect-video"
+                  className="relative block aspect-video w-full"
                 >
                   <RenderImage
                     image={storygram.attributes.image.data}
@@ -140,21 +140,21 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
                   />
                   <span
                     className={
-                      "absolute top-0 left-0 w-full h-full bg-black opacity-0 hover:opacity-50 duration-300"
+                      "absolute left-0 top-0 h-full w-full bg-black opacity-0 duration-300 hover:opacity-50"
                     }
                   />
                 </Link>
-                <div className="px-5 md:px-10 pt-4 md:pt-8 pb-5 flex flex-col items-center flex-grow">
+                <div className="flex grow flex-col items-center px-5 pb-5 pt-4 md:px-10 md:pt-8">
                   <Link
                     href={storygram.attributes.link}
-                    className="text-lg leading-8 font-bold mb-3 hover:text-neon-green"
+                    className="mb-3 text-lg font-bold leading-8 hover:text-neon-green"
                   >
                     {storygram.attributes.head}
                   </Link>
-                  <div className="flex-grow w-full text-center text-[12px] leading-7 border-b border-white border-opacity-10 line-clamp-4">
+                  <div className="line-clamp-4 w-full grow border-b border-white/10 text-center text-[12px] leading-7">
                     {storygram.attributes.text}
                   </div>
-                  <div className="mt-5 font-bold text-xs uppercase">
+                  <div className="mt-5 text-xs font-bold uppercase">
                     {dayjs(storygram.attributes.date).format("D MMM YYYY")}
                   </div>
                 </div>
@@ -164,7 +164,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
           <Link
             href={story.buttonLink}
             target="_blank"
-            className="block mt-[3.5vw] font-bold text-sm border border-white bg-white text-[#303030] rounded-full hover:text-white hover:bg-dark"
+            className="mt-[3.5vw] block rounded-full border border-white bg-white text-sm font-bold text-[#303030] hover:bg-dark hover:text-white"
           >
             {story.buttonText}
           </Link>

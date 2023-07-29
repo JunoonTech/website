@@ -7,7 +7,7 @@ const SocialLinks = ({ socials }) => {
   return (
     <ul className="flex">
       {socials.map((social) => (
-        <li key={social.id} className="ml-5 opacity-80 text-lg">
+        <li key={social.id} className="ml-5 text-lg opacity-80">
           <Link
             href={social.attributes.link}
             target="_blank"
