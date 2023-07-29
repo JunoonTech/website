@@ -7,14 +7,18 @@
   @apply transition-all;
 }
 body {
-  @apply text-white m-0;
+  @apply m-0;
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 header a {
-  @apply text-white hover:text-opacity-75;
+  @apply hover:text-opacity-75;
+}
+
+header.white a {
+  @apply text-white;
 }
 
 header .navlink a {

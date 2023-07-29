@@ -1,17 +1,17 @@
-import Image from "next/image";
 import getContent from "../lib/strapi";
-import Header from "@/components/header";
-import Slider from "@/components/slider";
-import RenderImage from "@/components/renderImage";
+import getCommonProps from "../lib/getCommonProps";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Slider from "@/components/Slider";
+import RenderImage from "@/components/RenderImage";
 import Link from "next/link";
 import dayjs from "dayjs";
-import SocialLinks from "@/components/socialLinks";
-import AnimateNum from "@/components/animateNum";
-import { useEffect, useRef } from "react";
+import AnimateNum from "@/components/AnimateNum";
+import { useRef } from "react";
 import useOnScreen from "@/hooks/useOnScreen";
 import Div100vh from "react-div-100vh";
 
-export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
+export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
   const numsRef = useRef();
   const numsOnScreen = useOnScreen(numsRef);
 
@@ -31,13 +31,14 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
     </div>
   );
   return (
-    <main className="bg-dark">
+    <main className="bg-dark text-white">
       <Div100vh>
         <div className="h-full relative">
           <Header
             navbarLinks={navbarLinks}
             socialLinks={socialLinks}
-            siteLogo={siteLogo}
+            logo={logos.fullWhite}
+            white
           />
           <div className="hidden md:block absolute top-0 left-0 w-full h-full">
             <Slider images={hero.sliderImages.data}>{renderedHero}</Slider>
@@ -58,7 +59,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
           <div className="w-full flex flex-col md:flex-row items-center mb-14">
             <div className="md:w-1/2 mb-6 md:mb-0 pr-8 pl-4">
               <RenderImage
-                image={about.image.data}
+                image={logos.logoOnlyWhite.data}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
@@ -91,12 +92,24 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
             {featured.head}
           </h1>
           <div className="w-full grid md:grid-cols-3 gap-x-8 gap-y-8 md:gap-y-16">
-            {featured.images.data.map((image) => (
-              <div key={image.id} className="pt-3 pb-6 bg-darker">
+            {featured.images.map((image) => (
+              <div key={image.id} className="pt-3 pb-6 bg-darker relative">
                 <RenderImage
-                  image={image}
+                  image={image.file.data}
                   sizes="(max-width: 768px) 100vw, 30vw"
                 />
+                <div className="absolute top-0 left-0 w-full h-full opacity-0 hover:opacity-100 duration-1000">
+                  {image.instaHandle && (
+                    <Link
+                      className="absolute bottom-7 right-0 w-44 p-2 text-center bg-opacity-70 bg-black"
+                      href={`https://instagram.com/${image.instaHandle}`}
+                      target="_blank"
+                    >
+                      <div>Shot by:</div>
+                      <div>{image.instaHandle}</div>
+                    </Link>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -138,10 +151,8 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
                   >
                     {storygram.attributes.head}
                   </Link>
-                  <div className="flex-grow w-full text-center text-[12px] leading-7 pb-2.5 border-b border-white border-opacity-10">
-                    {storygram.attributes.text.split("\n").map((para, idx) => (
-                      <p key={`${storygram.id}-text-${idx}`}>{para}</p>
-                    ))}
+                  <div className="flex-grow w-full text-center text-[12px] leading-7 border-b border-white border-opacity-10 line-clamp-4">
+                    {storygram.attributes.text}
                   </div>
                   <div className="mt-5 font-bold text-xs uppercase">
                     {dayjs(storygram.attributes.date).format("D MMM YYYY")}
@@ -160,16 +171,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, siteLogo }) {
         </div>
       </div>
       {/* footer */}
-      <div className="footer mt-[7vw] py-16 md:py-[5vw] md:px-[8.5vw] bg-darker">
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="md:col-start-2 flex items-center justify-center mb-6 md:mb-0">
-            <RenderImage image={siteLogo.logo.data} className="max-w-[310px]" />
-          </div>
-          <div className="flex justify-center md:justify-end items-center">
-            <SocialLinks socials={socialLinks} />
-          </div>
-        </div>
-      </div>
+      <Footer logo={logos.fullWhite} socialLinks={socialLinks} />
     </main>
   );
 }
@@ -178,10 +180,6 @@ export const getServerSideProps = async () => {
   const {
     data: { attributes: homeData },
   } = await getContent({ name: "home" });
-  const { data: socialLinks } = await getContent({ name: "social-links" });
-  const { data: navbarLinks } = await getContent({ name: "navbar-links" });
-  const {
-    data: { attributes: siteLogo },
-  } = await getContent({ name: "logo" });
-  return { props: { homeData, siteLogo, navbarLinks, socialLinks } };
+  const commonProps = await getCommonProps();
+  return { props: { homeData, ...commonProps } };
 };

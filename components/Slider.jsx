@@ -1,9 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import RenderImage from "./renderImage";
-import Image from "next/image";
+import RenderImage from "./RenderImage";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-
-let startTime;
 
 const Slider = ({ images, children }) => {
   const totalImages = images.length;
@@ -18,15 +15,15 @@ const Slider = ({ images, children }) => {
       }
       return num % totalImages;
     },
-    [totalImages]
+    [totalImages],
   );
   const nextImage = useCallback(
     () => setToShow((toShow) => getMod(toShow + 1)),
-    [getMod]
+    [getMod],
   );
   const prevImage = useCallback(
     () => setToShow((toShow) => getMod(toShow - 1)),
-    [getMod]
+    [getMod],
   );
 
   useEffect(() => {

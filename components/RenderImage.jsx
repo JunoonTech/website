@@ -7,13 +7,7 @@ const RenderImage = ({ image, ...props }) => {
     toPass.width = width;
     toPass.height = height;
   }
-  return (
-    <Image
-      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${url}`}
-      alt={alternativeText || ""}
-      {...toPass}
-    />
-  );
+  return <Image src={`${url}`} alt={alternativeText || ""} {...toPass} />;
 };
 
 export default RenderImage;
