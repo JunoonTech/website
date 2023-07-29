@@ -1,8 +1,12 @@
 {
-  "extends": ["plugin:prettier/recommended", "next/core-web-vitals"],
+  "extends": [
+    "eslint:recommended",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": ["tailwindcss"],
   "rules": {
-    "prefer-destructuring": ["error", { "object": true, "array": false }],
-    "no-unused-vars": ["error"],
-    "no-undef": "error"
+    "tailwindcss/no-custom-classname": "off"
   }
 }
