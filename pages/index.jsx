@@ -24,7 +24,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
       <Link
         href={hero.buttonLink}
         target="_blank"
-        className="rounded-full bg-white text-sm font-bold text-[#303030] hover:text-neon-green"
+        className="rounded-full bg-white text-sm font-bold text-dark hover:text-neon-green"
       >
         {hero.buttonText}
       </Link>
@@ -164,7 +164,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
           <Link
             href={story.buttonLink}
             target="_blank"
-            className="mt-[3.5vw] block rounded-full border border-white bg-white text-sm font-bold text-[#303030] hover:bg-dark hover:text-white"
+            className="btn mt-[3.5vw] bg-white text-dark hover:bg-dark hover:text-white"
           >
             {story.buttonText}
           </Link>

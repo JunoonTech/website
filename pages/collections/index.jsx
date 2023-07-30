@@ -2,11 +2,11 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import getContent from "@/lib/strapi";
 import getCommonProps from "@/lib/getCommonProps";
-import CollectionCard from "./CollectionCard";
+import CollectionCard from "../../components/CollectionCard";
 
 const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
   return (
-    <main className="bg-[#f6f7fa] text-[#505050]">
+    <main className="bg-light text-dark">
       {/* header */}
       <Header
         logo={logos.fullBlack}

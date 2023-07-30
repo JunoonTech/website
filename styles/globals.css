@@ -6,6 +6,9 @@
 * {
   @apply transition-all;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   @apply m-0;
   font-family: "Nunito", sans-serif;
@@ -112,5 +115,5 @@ header .secondary {
 }
 
 .btn {
-  @apply inline-block border px-6 py-3 border-white rounded-full text-white font-bold uppercase text-sm hover:bg-[#8ec36e];
+  @apply inline-block border-2 px-6 py-3 border-white rounded-full font-bold uppercase text-sm;
 }

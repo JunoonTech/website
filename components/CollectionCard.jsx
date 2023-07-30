@@ -19,7 +19,7 @@ const CollectionCard = ({ collection, logo }) => {
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn"
+                className="btn text-white hover:bg-neon-green"
               >
                 View More
               </Link>

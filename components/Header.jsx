@@ -57,7 +57,7 @@ const Header = ({ navbarLinks, socialLinks, logo, white }) => {
         </div>
       </div>
 
-      <div className={`block md:hidden ${white ? "bg-[#161616]" : ""}`}>
+      <div className={`block md:hidden ${white ? "bg-darker" : ""}`}>
         <div className="flex items-center justify-between px-8 py-6">
           <Link href="/">
             <RenderImage
