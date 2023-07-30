@@ -6,7 +6,7 @@ import useOnScreen from "@/hooks/useOnScreen";
 
 const Header = ({ navbarLinks, socialLinks, logo, white }) => {
   const headerRef = useRef();
-  const headerOnScreen = useOnScreen(headerRef);
+  const headerOnScreen = useOnScreen(headerRef, true);
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -57,7 +57,7 @@ const Header = ({ navbarLinks, socialLinks, logo, white }) => {
         </div>
       </div>
 
-      <div className={`block md:hidden ${white ? "bg-darker" : ""}`}>
+      <div className={`block md:hidden ${white ? "bg-darkest" : ""}`}>
         <div className="flex items-center justify-between px-8 py-6">
           <Link href="/">
             <RenderImage

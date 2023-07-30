@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
-const AnimateNum = ({ value }) => {
+const AnimateNum = ({ value, timeToAnimate }) => {
   const [toShow, setToShow] = useState(0);
+  if (!timeToAnimate) {
+    timeToAnimate = 1000;
+  }
   useEffect(() => {
     if (!(typeof value === "number")) {
       return;
@@ -13,7 +16,7 @@ const AnimateNum = ({ value }) => {
       if (!startTime) {
         startTime = ts;
       }
-      const progress = Math.min((ts - startTime) / 2000, 1);
+      const progress = Math.min((ts - startTime) / timeToAnimate, 1);
       setToShow(Math.floor(progress * (value - start) + start));
       if (progress < 1) {
         window.requestAnimationFrame(step);

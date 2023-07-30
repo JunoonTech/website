@@ -14,7 +14,6 @@ import Div100vh from "react-div-100vh";
 export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
   const numsRef = useRef();
   const numsOnScreen = useOnScreen(numsRef);
-
   const { hero, about, featured, story } = homeData;
 
   const renderedHero = (
@@ -31,7 +30,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
     </div>
   );
   return (
-    <main className="bg-dark text-white">
+    <main className="bg-darker text-white">
       <Div100vh>
         <div className="relative h-full">
           <Header
@@ -93,7 +92,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
           </h1>
           <div className="grid w-full gap-8 md:grid-cols-3 md:gap-y-16">
             {featured.images.map((image) => (
-              <div key={image.id} className="relative bg-darker pb-6 pt-3">
+              <div key={image.id} className="relative bg-darkest pb-6 pt-3">
                 <RenderImage
                   image={image.file.data}
                   sizes="(max-width: 768px) 100vw, 30vw"
@@ -123,7 +122,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
             {story.storygrams.data.map((storygram) => (
               <div
                 key={storygram.id}
-                className="mb-8 flex w-3/4 flex-col overflow-hidden rounded-md bg-darker md:mx-4 md:mb-0 md:w-1/3"
+                className="mb-8 flex w-3/4 flex-col overflow-hidden rounded-md bg-darkest md:mx-4 md:mb-0 md:w-1/3"
               >
                 <Link
                   href={storygram.attributes.link}
@@ -164,7 +163,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
           <Link
             href={story.buttonLink}
             target="_blank"
-            className="btn mt-[3.5vw] bg-white text-dark hover:bg-dark hover:text-white"
+            className="btn mt-[3.5vw] bg-white text-dark hover:bg-darker hover:text-white"
           >
             {story.buttonText}
           </Link>

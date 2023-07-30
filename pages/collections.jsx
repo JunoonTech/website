@@ -6,7 +6,7 @@ import CollectionCard from "../../components/CollectionCard";
 
 const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
   return (
-    <main className="bg-light text-dark">
+    <main className="bg-lightest text-dark">
       {/* header */}
       <Header
         logo={logos.fullBlack}
