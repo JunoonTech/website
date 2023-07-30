@@ -19,6 +19,26 @@ module.exports = {
         light: "#808080",
         lighest: "#f6f7fa",
       },
+      animation: {
+        "fade-in-down": "fade-in-down 1s ease-out infinite",
+      },
+      keyframes: {
+        "fade-in-down": {
+          "0%": {
+            opacity: 0,
+          },
+          "30%": {
+            opacity: 1,
+          },
+          "60%": {
+            opacity: 1,
+          },
+          "100%": {
+            top: "90%",
+            opacity: 0,
+          },
+        },
+      },
     },
   },
   plugins: [],

@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import getContent from "@/lib/strapi";
 import getCommonProps from "@/lib/getCommonProps";
-import CollectionCard from "../../components/CollectionCard";
+import CollectionCard from "@/components/CollectionCard";
 
 const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
   return (
