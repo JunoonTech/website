@@ -32,6 +32,16 @@ header .secondary {
   animation: 0.8s 3s ease-in 1 normal fadeIn forwards;
 }
 
+h1 {
+  @apply font-bold text-4xl;
+}
+
+h3 {
+  @apply font-bold text-xl;
+}
+h4 {
+  @apply font-semibold text-lg;
+}
 .slider .arrow {
   @apply w-10 h-10 duration-300 opacity-80 hover:opacity-100;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.04);

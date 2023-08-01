@@ -17,7 +17,7 @@ module.exports = {
         darkest: "#161616",
         "neon-green": "#9ccd7e",
         light: "#808080",
-        lighest: "#f6f7fa",
+        lightest: "#f6f7fa",
       },
       animation: {
         "fade-in-down": "fade-in-down 1s ease-out infinite",
