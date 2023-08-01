@@ -5,11 +5,11 @@ import Footer from "@/components/Footer";
 import Slider from "@/components/Slider";
 import RenderImage from "@/components/RenderImage";
 import Link from "next/link";
-import dayjs from "dayjs";
 import AnimateNum from "@/components/AnimateNum";
 import { useRef } from "react";
 import useOnScreen from "@/hooks/useOnScreen";
 import Div100vh from "react-div-100vh";
+import StorygramCards from "@/components/StorygramCards";
 
 export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
   const numsRef = useRef();
@@ -118,48 +118,9 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
 
         <div className="story flex flex-col items-center pb-[3vw] pt-[7vw]">
           <h1 className="mb-[3vw] text-3xl font-bold">{story.head}</h1>
-          <div className="flex w-full flex-wrap justify-center">
-            {story.storygrams.data.map((storygram) => (
-              <div
-                key={storygram.id}
-                className="mb-8 flex w-3/4 flex-col overflow-hidden rounded-md bg-darkest md:mx-4 md:mb-0 md:w-1/3"
-              >
-                <Link
-                  href={storygram.attributes.link}
-                  className="relative block aspect-video w-full"
-                >
-                  <RenderImage
-                    image={storygram.attributes.image.data}
-                    sizes="(max-width: 768px) 100vw, 30vw"
-                    fill
-                    style={{
-                      objectFit: "cover",
-                      objectPosition: "center",
-                    }}
-                  />
-                  <span
-                    className={
-                      "absolute left-0 top-0 h-full w-full bg-black opacity-0 duration-300 hover:opacity-50"
-                    }
-                  />
-                </Link>
-                <div className="flex grow flex-col items-center px-5 pb-5 pt-4 md:px-10 md:pt-8">
-                  <Link
-                    href={storygram.attributes.link}
-                    className="mb-3 text-lg font-bold leading-8 hover:text-neon-green"
-                  >
-                    {storygram.attributes.head}
-                  </Link>
-                  <div className="line-clamp-4 w-full grow border-b border-white/10 text-center text-[12px] leading-7">
-                    {storygram.attributes.text}
-                  </div>
-                  <div className="mt-5 text-xs font-bold uppercase">
-                    {dayjs(storygram.attributes.date).format("D MMM YYYY")}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+
+          <StorygramCards storygrams={story.storygrams} clamp />
+
           <Link
             href={story.buttonLink}
             target="_blank"
