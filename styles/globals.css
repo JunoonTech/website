@@ -128,3 +128,19 @@ h4 {
 .btn {
   @apply inline-block border-2 px-6 py-3 border-white rounded-full font-bold uppercase text-sm;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-md;
+}

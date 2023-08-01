@@ -19,6 +19,9 @@ module.exports = {
         light: "#808080",
         lightest: "#f6f7fa",
       },
+      dropShadow: {
+        "3xl": ["0 20px 13px rgb(0 0 0 / 0.03)", "0 8px 5px rgb(0 0 0 / 0.8)"],
+      },
       animation: {
         "fade-in-down": "fade-in-down 1s ease-out infinite",
       },
