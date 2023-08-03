@@ -1,5 +1,4 @@
-const Image = require("next/image");
-
+import Image from "next/image";
 const RenderImage = ({ image, ...props }) => {
   const { url, width, height, alternativeText } = image.attributes;
   const toPass = { ...props };
