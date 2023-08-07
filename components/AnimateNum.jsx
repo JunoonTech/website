@@ -24,6 +24,7 @@ const AnimateNum = ({ value, timeToAnimate }) => {
     };
 
     window.requestAnimationFrame(step);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return toShow;
