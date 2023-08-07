@@ -29,7 +29,7 @@ const About = ({ contact, navbarLinks, socialLinks, logos }) => {
 };
 export default About;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: contact } = await getContent({ name: "contact" });
   const commonProps = await getCommonProps();
   return {

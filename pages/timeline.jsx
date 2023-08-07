@@ -116,7 +116,7 @@ const Collections = ({ timelineEvents, navbarLinks, socialLinks, logos }) => {
 };
 export default Collections;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: timelineEvents } = await getContent({
     name: "timeline-events",
     sort: ["date:desc"],

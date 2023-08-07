@@ -7,7 +7,7 @@ const Storygram = () => {
 
   useEffect(() => {
     push("/storygram/1");
-  }, []);
+  }, [push]);
 };
 
 export default Storygram;

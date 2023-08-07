@@ -167,7 +167,7 @@ const Wallpapers = ({ wallpapers, navbarLinks, socialLinks, logos }) => {
 };
 export default Wallpapers;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: wallpapers } = await getContent({ name: "wallpapers" });
   const commonProps = await getCommonProps();
 

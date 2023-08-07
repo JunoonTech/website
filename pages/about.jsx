@@ -140,7 +140,7 @@ const About = ({
 };
 export default About;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: team } = await getContent({ name: "team" });
   const { data: reels } = await getContent({ name: "reel" });
   const { data: projects } = await getContent({ name: "projects" });

@@ -52,7 +52,7 @@ const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
 };
 export default Collections;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data: collectionGroups } = await getContent({
     name: "collection-groups",
     sort: ["id"],

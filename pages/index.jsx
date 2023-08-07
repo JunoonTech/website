@@ -136,7 +136,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const {
     data: { attributes: homeData },
   } = await getContent({ name: "home" });
