@@ -108,6 +108,7 @@ const Slider = ({ images, children }) => {
                     objectPosition: "center",
                   }}
                   className="rounded-full"
+                  sizes="10rem"
                   priority
                 />
 
