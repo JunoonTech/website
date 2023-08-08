@@ -69,7 +69,7 @@ const Slider = ({ images, children }) => {
                 }}
                 className="delay-300 duration-[2000ms] ease-in-out"
                 sizes="100vw"
-                priority
+                priority={idx === 0}
               />
             </div>
           );
