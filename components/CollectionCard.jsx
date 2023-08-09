@@ -9,9 +9,14 @@ const CollectionCard = ({ collection, logo }) => {
         <RenderImage
           image={image.data}
           className="w-80 max-w-full md:h-96 md:w-96"
+          sizes="24rem"
         />
         <div className="overlay absolute left-0 top-0 flex h-full w-full flex-col p-3">
-          <RenderImage image={logo.data} className="hidden w-12 md:block" />
+          <RenderImage
+            image={logo.data}
+            className="hidden w-12 md:block"
+            sizes="(max-width: 768px) 50vw, 30vw"
+          />
           <div className="content mt-auto text-center text-white">
             <h2 className="title mb-3 text-xl font-bold">{name}</h2>
             {link && (

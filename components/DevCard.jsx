@@ -10,6 +10,7 @@ const DevCard = ({ developer }) => {
             fill={true}
             style={{ objectFit: "cover" }}
             className="rounded-full p-1"
+            sizes="(max-width: 768px) 50vw, 20vw"
           />
         </div>
       </div>

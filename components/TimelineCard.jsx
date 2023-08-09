@@ -82,6 +82,7 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
         <RenderImage
           image={timelineEvent.attributes.image.data}
           className="relative"
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
 
         {/* content */}
