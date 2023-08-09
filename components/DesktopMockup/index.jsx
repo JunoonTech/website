@@ -7,7 +7,7 @@ const DesktopMockup = ({ image }) => {
     <div className="relative w-full">
       <div className="absolute left-[10%] top-[2%] h-[88%] w-[80%]">
         <RenderImage
-          image={image.data}
+          image={image}
           fill
           style={{ objectFit: "cover" }}
           sizes="80vw"

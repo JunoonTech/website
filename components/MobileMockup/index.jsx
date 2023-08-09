@@ -7,7 +7,7 @@ const MobileMockup = ({ image }) => {
     <div className="relative w-full">
       <div className="absolute left-[5%] top-[1.5%] h-[97%] w-[90%] overflow-hidden rounded-[4%]">
         <RenderImage
-          image={image.data}
+          image={image}
           fill
           style={{ objectFit: "cover" }}
           sizes="(max-width: 768px) 66vw, 33vw"
