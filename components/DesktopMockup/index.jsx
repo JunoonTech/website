@@ -10,8 +10,7 @@ const DesktopMockup = ({ image }) => {
           image={image}
           fill
           style={{ objectFit: "cover" }}
-          sizes="80vw"
-          quality={100}
+          sizes="(max-width: 768px) 80vw, 40vw"
         />
       </div>
       <Image src={mockupImage} className="relative z-10 w-full" alt="desktop" />
