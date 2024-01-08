@@ -17,6 +17,7 @@ const MobileMockup = ({ image }) => {
         src={mockupImage}
         className="relative z-10 w-full drop-shadow-3xl"
         alt="mobile"
+        priority
       />
     </div>
   );

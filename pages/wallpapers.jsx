@@ -154,6 +154,7 @@ const Wallpapers = ({ wallpapers, navbarLinks, socialLinks, logos }) => {
                     className="rounded-lg"
                     style={{ objectFit: "cover" }}
                     sizes="(max-width: 768px) 33vw, 18vw"
+                    priority
                   />
                 </div>
               </div>

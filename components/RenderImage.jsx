@@ -1,5 +1,5 @@
 import Image from "next/image";
-import placeholder from "@/public/junoon-logo-only.png";
+import placeholder from "@/public/loader.gif";
 
 const RenderImage = ({ image, ...props }) => {
   const { url, width, height, alternativeText } = image.attributes;
@@ -8,14 +8,18 @@ const RenderImage = ({ image, ...props }) => {
     toPass.width = width;
     toPass.height = height;
   }
+
   return (
-    <Image
-      src={`${url}`}
-      alt={alternativeText || ""}
-      {...toPass}
-      placeholder="blur"
-      blurDataURL={placeholder.src}
-    />
+    <>
+      <Image
+        key={url}
+        src={url}
+        alt={alternativeText || ""}
+        {...toPass}
+        placeholder="blur"
+        blurDataURL={image.base64 || placeholder.src}
+      />
+    </>
   );
 };
 
