@@ -1,6 +1,4 @@
 import Image from "next/image";
-import placeholder from "@/public/loader.gif";
-
 const RenderImage = ({ image, ...props }) => {
   const { url, width, height, alternativeText } = image.attributes;
   const toPass = { ...props };
@@ -10,16 +8,14 @@ const RenderImage = ({ image, ...props }) => {
   }
 
   return (
-    <>
-      <Image
-        key={url}
-        src={url}
-        alt={alternativeText || ""}
-        {...toPass}
-        placeholder="blur"
-        blurDataURL={image.base64 || placeholder.src}
-      />
-    </>
+    <Image
+      key={url}
+      src={url}
+      alt={alternativeText || ""}
+      {...toPass}
+      placeholder="blur"
+      blurDataURL={image.attributes.base64}
+    />
   );
 };
 
