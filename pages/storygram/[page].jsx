@@ -62,10 +62,15 @@ export const getStaticProps = async (req) => {
 };
 
 export const getStaticPaths = async () => {
-  const storygrams = await getStorygrams({ page: 1 });
-  const pageCount = storygrams.meta.pagination.pageCount;
-  const paths = Array.from({ length: pageCount }, (_, i) => ({
-    params: { page: (i + 1).toString() },
-  }));
-  return { paths, fallback: false };
+  try {
+    const storygrams = await getStorygrams({ page: 1 });
+    const pageCount = storygrams.meta.pagination.pageCount;
+    const paths = Array.from({ length: pageCount }, (_, i) => ({
+      params: { page: (i + 1).toString() },
+    }));
+    return { paths, fallback: false };
+  } catch (err) {
+    console.log(err);
+    return { paths: [], fallback: true };
+  }
 };
