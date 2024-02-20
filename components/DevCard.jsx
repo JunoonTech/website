@@ -4,7 +4,7 @@ const DevCard = ({ developer }) => {
   return (
     <div className="m-10 flex flex-col overflow-hidden rounded-3xl bg-white">
       <div className="rounded-bl-3xl bg-darker py-6">
-        <div className="relative mx-auto h-36 w-36 overflow-hidden rounded-full border-2 border-white">
+        <div className="relative mx-auto size-36 overflow-hidden rounded-full border-2 border-white">
           <RenderImage
             image={developer.attributes.image.data}
             fill={true}

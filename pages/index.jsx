@@ -39,10 +39,10 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
             logo={logos.fullWhite}
             white
           />
-          <div className="absolute left-0 top-0 hidden h-full w-full md:block">
+          <div className="absolute left-0 top-0 hidden size-full md:block">
             <Slider images={hero.sliderImages.data}>{renderedHero}</Slider>
           </div>
-          <div className="absolute left-0 top-0 h-full w-full md:hidden">
+          <div className="absolute left-0 top-0 size-full md:hidden">
             <Slider images={hero.sliderImagesMobile.data}>
               {renderedHero}
             </Slider>
@@ -97,7 +97,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
                   image={image.file.data}
                   sizes="(max-width: 768px) 100vw, 30vw"
                 />
-                <div className="absolute left-0 top-0 h-full w-full opacity-0 duration-1000 hover:opacity-100">
+                <div className="absolute left-0 top-0 size-full opacity-0 duration-1000 hover:opacity-100">
                   {image.instaHandle && (
                     <Link
                       className="absolute bottom-7 right-0 w-44 bg-black/70 p-2 text-center"

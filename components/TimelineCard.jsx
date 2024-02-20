@@ -53,7 +53,7 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
       {/* marker */}
       <div
         ref={markerRef}
-        className={`mr-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-2 border-light font-eslLegend text-lg  md:mx-4 lg:mx-5  ${
+        className={`mr-4 flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-light font-eslLegend text-lg md:mx-4  lg:mx-5  ${
           markerAboveHalf ? "bg-light text-dark" : "bg-darker text-white"
         }`}
       >
@@ -74,7 +74,7 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
       >
         {/* arrow */}
         <div
-          className={`absolute  left-0 top-5 h-4  w-4 -translate-x-1/2 rotate-45 bg-dark ${
+          className={`absolute  left-0 top-5 size-4 -translate-x-1/2 rotate-45 bg-dark ${
             even ? "" : "lg:left-auto lg:right-0 lg:translate-x-1/2"
           }`}
         />

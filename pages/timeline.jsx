@@ -96,8 +96,8 @@ const Collections = ({ timelineEvents, navbarLinks, socialLinks, logos }) => {
           const EventRef = first
             ? firstEventMarker
             : last
-            ? lastEventRef
-            : null;
+              ? lastEventRef
+              : null;
 
           return (
             <TimelineCard

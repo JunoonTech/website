@@ -8,10 +8,10 @@ const CollectionCard = ({ collection, logo }) => {
       <div className="card  relative">
         <RenderImage
           image={image.data}
-          className="w-80 max-w-full md:h-96 md:w-96"
+          className="w-80 max-w-full md:size-96"
           sizes="24rem"
         />
-        <div className="overlay absolute left-0 top-0 flex h-full w-full flex-col p-3">
+        <div className="overlay absolute left-0 top-0 flex size-full flex-col p-3">
           <RenderImage
             image={logo.data}
             className="hidden w-12 md:block"

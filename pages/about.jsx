@@ -39,7 +39,7 @@ const About = ({
           <div className="rounded-md bg-white p-10 pb-5 text-center">
             <div className="relative mb-2">
               {/* image */}
-              <div className="absolute left-0 top-0 h-full w-full overflow-hidden">
+              <div className="absolute left-0 top-0 size-full overflow-hidden">
                 <RenderImage image={team.attributes.backgroundImage.data} />
               </div>
               {/* content */}

@@ -29,7 +29,7 @@ const StorygramCards = ({ storygrams, clamp }) => {
                 />
                 <span
                   className={
-                    "absolute left-0 top-0 h-full w-full bg-black opacity-0 duration-300 hover:opacity-50"
+                    "absolute left-0 top-0 size-full bg-black opacity-0 duration-300 hover:opacity-50"
                   }
                 />
               </Link>

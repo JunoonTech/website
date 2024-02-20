@@ -48,9 +48,9 @@ const Slider = ({ images, children }) => {
     }
   };
   return (
-    <div className="slider relative h-full w-full">
+    <div className="slider relative size-full">
       <div
-        className="imgs absolute left-0 top-0 h-full w-full"
+        className="imgs absolute left-0 top-0 size-full"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -58,7 +58,7 @@ const Slider = ({ images, children }) => {
         {images.map((image, idx) => {
           const display = idx === toShow;
           return (
-            <div key={image.id} className="absolute left-0 top-0 h-full w-full">
+            <div key={image.id} className="absolute left-0 top-0 size-full">
               <RenderImage
                 image={image}
                 fill
@@ -97,7 +97,7 @@ const Slider = ({ images, children }) => {
             return (
               <button
                 key={image.id}
-                className="relative h-12 w-12"
+                className="relative size-12"
                 onClick={() => setToShow(idx)}
               >
                 <RenderImage
@@ -113,7 +113,7 @@ const Slider = ({ images, children }) => {
                 />
 
                 <div
-                  className={`absolute left-0 top-0 h-full w-full rounded-full border-2 border-white/40 ${
+                  className={`absolute left-0 top-0 size-full rounded-full border-2 border-white/40 ${
                     display ? "" : "opacity-0"
                   } `}
                 />

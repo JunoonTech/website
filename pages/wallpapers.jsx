@@ -93,7 +93,7 @@ const Wallpapers = ({ wallpapers, navbarLinks, socialLinks, logos }) => {
               <MobileMockup image={selectedWallpaper} />
 
               {/* logo */}
-              <div className="absolute left-[12%] top-[5%] h-10 w-10">
+              <div className="absolute left-[12%] top-[5%] size-10">
                 <RenderImage image={logos.logoOnlyWhite.data} fill />
               </div>
 
@@ -101,7 +101,7 @@ const Wallpapers = ({ wallpapers, navbarLinks, socialLinks, logos }) => {
               <div className="absolute bottom-[5%] left-[12%] z-10">
                 <DownloadButton
                   href={selectedWallpaper.attributes.url}
-                  className="h-10 w-10"
+                  className="size-10"
                 />
               </div>
             </div>
@@ -113,7 +113,7 @@ const Wallpapers = ({ wallpapers, navbarLinks, socialLinks, logos }) => {
               <DesktopMockup image={selectedWallpaper} />
 
               {/* logo */}
-              <div className="absolute left-[12%] top-[5%] h-10 w-10">
+              <div className="absolute left-[12%] top-[5%] size-10">
                 <RenderImage image={logos.logoOnlyWhite.data} fill />
               </div>
 
@@ -121,7 +121,7 @@ const Wallpapers = ({ wallpapers, navbarLinks, socialLinks, logos }) => {
               <div className="absolute bottom-[11%] left-[12%] z-10">
                 <DownloadButton
                   href={selectedWallpaper.attributes.url}
-                  className="h-10 w-10"
+                  className="size-10"
                 />
               </div>
             </div>
@@ -147,7 +147,7 @@ const Wallpapers = ({ wallpapers, navbarLinks, socialLinks, logos }) => {
                 ref={selected ? selectedWallPaperRef : null}
                 onClick={() => setSelectedWallpaper(wallpaper)}
               >
-                <div className="relative h-full w-full">
+                <div className="relative size-full">
                   <RenderImage
                     image={wallpaper}
                     fill
