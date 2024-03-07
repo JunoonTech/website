@@ -5,7 +5,7 @@ import getContent from "@/lib/strapi";
 import getCommonProps from "@/lib/getCommonProps";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const Collections = ({ timelineEvents, navbarLinks, socialLinks, logos }) => {
+const Timeline = ({ timelineEvents, navbarLinks, socialLinks, logos }) => {
   const timelineRef = useRef(null);
   const lastEventRef = useRef(null);
   const firstEventMarker = useRef(null);
@@ -93,11 +93,7 @@ const Collections = ({ timelineEvents, navbarLinks, socialLinks, logos }) => {
           const even = (idx + 1) % 2 === 0;
           const first = idx === 0;
           const last = idx === timelineEvents.length - 1;
-          const EventRef = first
-            ? firstEventMarker
-            : last
-              ? lastEventRef
-              : null;
+          const EventRef = first ? firstEventMarker : last ? lastEventRef : {};
 
           return (
             <TimelineCard
@@ -114,7 +110,7 @@ const Collections = ({ timelineEvents, navbarLinks, socialLinks, logos }) => {
     </main>
   );
 };
-export default Collections;
+export default Timeline;
 
 export const getStaticProps = async () => {
   const { data: timelineEvents } = await getContent({
