@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import getContent from "@/lib/strapi";
 import getCommonProps from "@/lib/getCommonProps";
 import CollectionCard from "@/components/CollectionCard";
+import dayjs from "dayjs";
 
 const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
   return (
@@ -14,37 +15,26 @@ const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
         socialLinks={socialLinks}
       />
       {/* body */}
-      <div className="pt-24">
-        {collectionGroups.map((collectionGroup) => {
-          return (
-            <div key={collectionGroup.id}>
-              <div className="m-7 text-center text-3xl font-bold ">
-                {collectionGroup.attributes.name}
-              </div>
-              {collectionGroup.attributes.subgroups.map((subgroup) => {
+
+      {collectionGroups.map((group) => {
+        return (
+          <div key={group.year}>
+            <div className="m-7 text-center text-3xl">{group.year}</div>
+            <div className="flex flex-wrap items-center justify-around">
+              {group.collections.map((collection) => {
                 return (
-                  <div key={subgroup.id}>
-                    <div className="m-7 text-center text-3xl">
-                      {subgroup.name}
-                    </div>
-                    <div className="flex flex-wrap items-center justify-around">
-                      {subgroup.collections.data.map((collection) => {
-                        return (
-                          <CollectionCard
-                            key={collection.id}
-                            collection={collection}
-                            logo={logos.logoOnlyWhite}
-                          />
-                        );
-                      })}
-                    </div>
-                  </div>
+                  <CollectionCard
+                    key={collection.id}
+                    collection={collection}
+                    logo={logos.logoOnlyWhite}
+                  />
                 );
               })}
             </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
+
       {/* footer */}
       <Footer logo={logos.fullWhite} socialLinks={socialLinks} />
     </main>
@@ -53,9 +43,26 @@ const Collections = ({ collectionGroups, navbarLinks, socialLinks, logos }) => {
 export default Collections;
 
 export const getStaticProps = async () => {
-  const { data: collectionGroups } = await getContent({
-    name: "collection-groups",
-    sort: ["id"],
+  const { data: collections } = await getContent({
+    name: "collections",
+    sort: ["date:desc"],
+  });
+  collections.forEach((collection) => {
+    collection.attributes.year = dayjs(collection.attributes.date).year();
+  });
+  const collectionGroups = [];
+  collections.forEach((collection) => {
+    const existingGroup = collectionGroups.find(
+      (group) => group.year === collection.attributes.year,
+    );
+    if (!existingGroup) {
+      collectionGroups.push({
+        year: collection.attributes.year,
+        collections: [collection],
+      });
+    } else {
+      existingGroup.collections.push(collection);
+    }
   });
   const commonProps = await getCommonProps();
   return { props: { collectionGroups, ...commonProps } };
