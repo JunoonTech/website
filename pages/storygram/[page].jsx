@@ -10,6 +10,7 @@ const getStorygrams = async ({ page }) =>
   getContent({
     name: "storygrams",
     sort: ["createdAt:desc"],
+    filters: [["link", "$notNull", true]],
     pageSize: 6,
     page,
   });
