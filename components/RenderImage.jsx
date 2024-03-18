@@ -15,6 +15,9 @@ const RenderImage = ({ image, ...props }) => {
       {...toPass}
       placeholder="blur"
       blurDataURL={image.attributes.base64}
+      style={{
+        objectFit: props.fill ? "cover" : "contain",
+      }}
     />
   );
 };

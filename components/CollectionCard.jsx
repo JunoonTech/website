@@ -5,11 +5,12 @@ const CollectionCard = ({ collection, logo }) => {
   const { name, image, link } = collection.attributes;
   return (
     <div className="m-7 bg-white p-7">
-      <div className="card  relative">
+      <div className="card  relative w-80 md:size-96">
         <RenderImage
           image={image.data}
-          className="w-80 max-w-full md:size-96"
+          className="max-w-full"
           sizes="24rem"
+          fill
         />
         <div className="overlay absolute left-0 top-0 flex size-full flex-col p-3">
           <RenderImage
