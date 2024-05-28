@@ -1,6 +1,8 @@
+"use client";
 import { useCallback, useEffect, useState } from "react";
 import RenderImage from "./RenderImage";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
+import { twJoin } from "tailwind-merge";
 
 const Slider = ({ images, children }) => {
   const totalImages = images.length;
@@ -58,7 +60,7 @@ const Slider = ({ images, children }) => {
         {images.map((image, idx) => {
           const display = idx === toShow;
           return (
-            <div key={image.id} className="absolute left-0 top-0 size-full">
+            <div key={image._key} className="absolute left-0 top-0 size-full">
               <RenderImage
                 image={image}
                 fill
@@ -96,7 +98,7 @@ const Slider = ({ images, children }) => {
             const display = idx === toShow;
             return (
               <button
-                key={image.id}
+                key={image._key}
                 className="relative size-12"
                 onClick={() => setToShow(idx)}
               >
@@ -113,9 +115,10 @@ const Slider = ({ images, children }) => {
                 />
 
                 <div
-                  className={`absolute left-0 top-0 size-full rounded-full border-2 border-white/40 ${
-                    display ? "" : "opacity-0"
-                  } `}
+                  className={twJoin(
+                    "absolute left-0 top-0 size-full rounded-full border-2 border-white/40",
+                    display ? "" : "opacity-0",
+                  )}
                 />
               </button>
             );

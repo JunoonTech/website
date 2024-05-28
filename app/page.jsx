@@ -1,19 +1,15 @@
-import getContent from "../lib/strapi";
-import getCommonProps from "../lib/getCommonProps";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Slider from "@/components/Slider";
 import RenderImage from "@/components/RenderImage";
 import Link from "next/link";
 import AnimateNum from "@/components/AnimateNum";
-import { useRef } from "react";
-import useOnScreen from "@/hooks/useOnScreen";
-import Div100vh from "react-div-100vh";
+import Div100vh from "@/components/Div100vh";
 import StorygramCards from "@/components/StorygramCards";
+import fetchData from "@/lib/sanity/fetchData";
+import fetchLogo from "@/lib/sanity/fetchLogo";
 
-export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
-  const numsRef = useRef();
-  const numsOnScreen = useOnScreen(numsRef);
+export default async function Home() {
+  const homeData = await fetchData("home");
+  const logoOnlyWhite = await fetchLogo("logo-only-white");
   const { hero, about, featured, story } = homeData;
 
   const renderedHero = (
@@ -33,19 +29,11 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
     <main className="bg-darker text-white">
       <Div100vh>
         <div className="relative h-full">
-          <Header
-            navbarLinks={navbarLinks}
-            socialLinks={socialLinks}
-            logo={logos.fullWhite}
-            white
-          />
           <div className="absolute left-0 top-0 hidden size-full md:block">
-            <Slider images={hero.sliderImages.data}>{renderedHero}</Slider>
+            <Slider images={hero.sliderImages}>{renderedHero}</Slider>
           </div>
           <div className="absolute left-0 top-0 size-full md:hidden">
-            <Slider images={hero.sliderImagesMobile.data}>
-              {renderedHero}
-            </Slider>
+            <Slider images={hero.sliderImagesMobile}>{renderedHero}</Slider>
           </div>
         </div>
       </Div100vh>
@@ -58,7 +46,7 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
           <div className="mb-14 flex w-full flex-col items-center md:flex-row">
             <div className="mb-6 pl-4 pr-8 md:mb-0 md:w-1/2">
               <RenderImage
-                image={logos.logoOnlyWhite.data}
+                image={logoOnlyWhite.image}
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
@@ -66,18 +54,13 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
               {about.text}
             </div>
           </div>
-          <div
-            className="stats flex w-full flex-wrap justify-center px-4"
-            ref={numsRef}
-          >
+          <div className="stats flex w-full flex-wrap justify-center px-4">
             {about.stats.map((stat) => (
               <div
-                key={stat.id}
+                key={stat._id}
                 className="w-full text-center sm:w-1/2 md:w-1/3"
               >
-                <span className="number">
-                  <AnimateNum value={numsOnScreen ? stat.number : 0} />
-                </span>
+                <AnimateNum value={stat.number} />
 
                 <span className="text-xs md:text-base">{stat.title}</span>
               </div>
@@ -91,21 +74,21 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
             {featured.head}
           </h1>
           <div className="grid w-full gap-8 md:grid-cols-3 md:gap-y-16">
-            {featured.images.map((image) => (
-              <div key={image.id} className="relative bg-darkest pb-6 pt-3">
+            {featured.map((shot) => (
+              <div key={shot._id} className="relative bg-darkest pb-6 pt-3">
                 <RenderImage
-                  image={image.file.data}
+                  image={shot.image}
                   sizes="(max-width: 768px) 100vw, 30vw"
                 />
                 <div className="absolute left-0 top-0 size-full opacity-0 duration-1000 hover:opacity-100">
-                  {image.instaHandle && (
+                  {shot.instaHandle && (
                     <Link
                       className="absolute bottom-7 right-0 w-44 bg-black/70 p-2 text-center"
-                      href={`https://instagram.com/${image.instaHandle}`}
+                      href={`https://instagram.com/${shot.instaHandle}`}
                       target="_blank"
                     >
                       <div>Shot by:</div>
-                      <div>{image.instaHandle}</div>
+                      <div>{shot.instaHandle}</div>
                     </Link>
                   )}
                 </div>
@@ -130,16 +113,6 @@ export default function Home({ homeData, navbarLinks, socialLinks, logos }) {
           </Link>
         </div>
       </div>
-      {/* footer */}
-      <Footer logo={logos.fullWhite} socialLinks={socialLinks} />
     </main>
   );
 }
-
-export const getStaticProps = async () => {
-  const {
-    data: { attributes: homeData },
-  } = await getContent({ name: "home" });
-  const commonProps = await getCommonProps();
-  return { props: { homeData, ...commonProps } };
-};

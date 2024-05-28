@@ -1,20 +1,19 @@
 import RenderImage from "@/components/RenderImage";
+import fetchLogo from "@/lib/sanity/fetchLogo";
 import Link from "next/link";
 import React from "react";
-const CollectionCard = ({ collection, logo }) => {
-  const { name, image, link } = collection.attributes;
+
+export default async function CollectionCard({ collection }) {
+  const logoOnlyWhite = await fetchLogo("logo-only-white");
+
+  const { name, image, link } = collection;
   return (
     <div className="m-7 bg-white p-7">
       <div className="card  relative w-80 md:size-96">
-        <RenderImage
-          image={image.data}
-          className="max-w-full"
-          sizes="24rem"
-          fill
-        />
+        <RenderImage image={image} className="max-w-full" sizes="24rem" fill />
         <div className="overlay absolute left-0 top-0 flex size-full flex-col p-3">
           <RenderImage
-            image={logo.data}
+            image={logoOnlyWhite.image}
             className="hidden w-12 md:block"
             sizes="(max-width: 768px) 50vw, 30vw"
           />
@@ -35,6 +34,6 @@ const CollectionCard = ({ collection, logo }) => {
       </div>
     </div>
   );
-};
+}
 
-export default CollectionCard;
+CollectionCard;

@@ -1,6 +1,7 @@
 import Image from "next/image";
-const RenderImage = ({ image, ...props }) => {
-  const { url, width, height, alternativeText } = image.attributes;
+export default function RenderImage({ image, ...props }) {
+  const { url, metadata } = image.asset;
+  const { width, height } = metadata.dimensions;
   const toPass = { ...props };
   if (!props.fill) {
     toPass.width = width;
@@ -11,15 +12,13 @@ const RenderImage = ({ image, ...props }) => {
     <Image
       key={url}
       src={url}
-      alt={alternativeText || ""}
+      alt=""
       {...toPass}
       placeholder="blur"
-      blurDataURL={image.attributes.base64}
+      blurDataURL={metadata.lqip}
       style={{
         objectFit: props.fill ? "cover" : "contain",
       }}
     />
   );
-};
-
-export default RenderImage;
+}

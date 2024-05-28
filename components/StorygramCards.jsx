@@ -3,23 +3,22 @@ import RenderImage from "./RenderImage";
 import dayjs from "dayjs";
 import { twJoin } from "tailwind-merge";
 
-const StorygramCards = ({ storygrams, clamp }) => {
+export default function StorygramCards({ storygrams, clamp }) {
   return (
     <div className="flex w-full flex-wrap items-stretch justify-evenly">
-      {storygrams.data.map((storygram) => {
+      {storygrams.map((storygram) => {
         const formattedDate =
-          storygram.attributes.date &&
-          dayjs(storygram.attributes.date).format("D MMM YYYY");
+          storygram.date && dayjs(storygram.date).format("D MMM YYYY");
 
         return (
-          <div key={storygram.id} className="mb-8 w-3/4 md:mb-5 md:w-5/12 ">
+          <div key={storygram._id} className="mb-8 w-3/4 md:mb-5 md:w-5/12 ">
             <div className="flex h-full flex-col overflow-hidden rounded-md bg-darkest">
               <Link
-                href={storygram.attributes.link}
+                href={storygram.link || "#"}
                 className="relative block aspect-video w-full"
               >
                 <RenderImage
-                  image={storygram.attributes.image.data}
+                  image={storygram.image}
                   sizes="(max-width: 768px) 100vw, 30vw"
                   fill
                   style={{
@@ -35,10 +34,10 @@ const StorygramCards = ({ storygrams, clamp }) => {
               </Link>
               <div className="flex grow flex-col items-center px-5 pb-5 pt-4 md:px-10 md:pt-8">
                 <Link
-                  href={storygram.attributes.link}
+                  href={storygram.link || "#"}
                   className="mb-3 text-lg font-bold leading-8 hover:text-neon-green"
                 >
-                  {storygram.attributes.head}
+                  {storygram.head}
                 </Link>
                 <div
                   className={twJoin(
@@ -47,11 +46,11 @@ const StorygramCards = ({ storygrams, clamp }) => {
                   )}
                 >
                   {clamp
-                    ? storygram.attributes.text
-                    : storygram.attributes.text
+                    ? storygram.text
+                    : storygram.text
                         .split("\n")
                         .map((text, i) => (
-                          <p key={`${storygram.id}-text-${i}`}>{text}</p>
+                          <p key={`${storygram._id}-text-${i}`}>{text}</p>
                         ))}
                 </div>
                 {formattedDate && (
@@ -66,6 +65,4 @@ const StorygramCards = ({ storygrams, clamp }) => {
       })}
     </div>
   );
-};
-
-export default StorygramCards;
+}

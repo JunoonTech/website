@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { useState } from "react";
 import { pdfjs, Document, Page } from "react-pdf";
@@ -26,10 +27,7 @@ const Pdf = ({ doc }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <Document
-        file={doc.data.attributes.url}
-        onLoadSuccess={onDocumentLoadSuccess}
-      >
+      <Document file={doc.url} onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={pageNumber} />
       </Document>
       <div>
@@ -55,8 +53,8 @@ const Pdf = ({ doc }) => {
       </div>
       <div>
         <Link
-          href={doc.data.attributes.url}
-          download={doc.data.attributes.url}
+          href={doc.url}
+          download={doc.url}
           target="_blank"
           className="btn w-52 border-none bg-darkest text-center text-white"
         >

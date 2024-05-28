@@ -1,6 +1,6 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 const dayjs = require("dayjs");
-import RenderImage from "./RenderImage";
+import RenderImage from "@/components/RenderImage";
 import useOnScreen from "@/hooks/useOnScreen";
 
 const TimelineCard = ({ timelineEvent, even }, ref) => {
@@ -38,7 +38,7 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
   return (
     <div
       ref={ref}
-      key={timelineEvent.id}
+      key={timelineEvent._id}
       className={`relative mb-12 flex ${even ? "" : "lg:flex-row-reverse"}`}
     >
       {/* desktop heading */}
@@ -47,7 +47,7 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
           even ? "text-right" : ""
         }`}
       >
-        {timelineEvent.attributes.heading}
+        {timelineEvent.heading}
       </div>
 
       {/* marker */}
@@ -57,7 +57,7 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
           markerAboveHalf ? "bg-light text-dark" : "bg-darker text-white"
         }`}
       >
-        {dayjs(timelineEvent.attributes.date).year()}
+        {dayjs(timelineEvent.date).year()}
       </div>
 
       {/* image card */}
@@ -80,7 +80,7 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
         />
 
         <RenderImage
-          image={timelineEvent.attributes.image.data}
+          image={timelineEvent.image}
           className="relative"
           sizes="(max-width: 768px) 100vw, 50vw"
         />
@@ -89,12 +89,10 @@ const TimelineCard = ({ timelineEvent, even }, ref) => {
         <div className={`px-8 py-5 ${even ? "text-right" : ""}`}>
           {/* heading */}
           <div className="mb-1 font-eslLegend text-2xl font-bold text-light lg:hidden">
-            {timelineEvent.attributes.heading}
+            {timelineEvent.heading}
           </div>
           {/* description */}
-          <div className="text-white">
-            {timelineEvent.attributes.description}
-          </div>
+          <div className="text-white">{timelineEvent.description}</div>
         </div>
       </div>
     </div>

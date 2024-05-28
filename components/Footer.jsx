@@ -1,19 +1,20 @@
 import RenderImage from "./RenderImage";
 import SocialLinks from "./SocialLinks";
+import fetchLogo from "@/lib/sanity/fetchLogo";
 
-const Footer = ({ logo, socialLinks }) => {
+export default async function Footer() {
+  const fullWhite = await fetchLogo("full-white");
+
   return (
-    <footer className="footer mt-10 bg-darkest py-16 md:px-[8.5vw] md:py-[5vw]">
+    <footer className="footer bg-darkest py-16 md:px-[8.5vw] md:py-[5vw]">
       <div className="grid grid-cols-1 md:grid-cols-3">
         <div className="mb-6 flex items-center justify-center md:col-start-2 md:mb-0">
-          <RenderImage image={logo.data} className="max-w-[310px]" />
+          <RenderImage image={fullWhite.image} className="max-w-[310px]" />
         </div>
         <div className="flex items-center justify-center text-white md:justify-end">
-          <SocialLinks socials={socialLinks} />
+          <SocialLinks />
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

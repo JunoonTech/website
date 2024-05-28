@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+"use client";
+import useOnScreen from "@/hooks/useOnScreen";
+import { useEffect, useState, useRef } from "react";
 
-const AnimateNum = ({ value, timeToAnimate }) => {
+const AnimateNum = ({ value, timeToAnimate = 1000 }) => {
+  const ref = useRef();
+  const onScreen = useOnScreen(ref);
   const [toShow, setToShow] = useState(0);
-  if (!timeToAnimate) {
-    timeToAnimate = 1000;
-  }
+
   useEffect(() => {
-    if (!(typeof value === "number")) {
+    if (!(onScreen && typeof value === "number")) {
       return;
     }
     let startTime;
@@ -25,9 +27,13 @@ const AnimateNum = ({ value, timeToAnimate }) => {
 
     window.requestAnimationFrame(step);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [value, onScreen]);
 
-  return toShow;
+  return (
+    <span className="number" ref={ref}>
+      {toShow}
+    </span>
+  );
 };
 
 export default AnimateNum;
