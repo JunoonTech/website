@@ -4,7 +4,8 @@ import "@/styles/timeline.css";
 
 export default async function Timeline() {
   const timelineEvents = await fetchData("timelineEvent");
-
+  // sorted the timeline
+  const sortedTimelineEvents = timelineEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
   return (
     <main className="bg-black">
       {/* body */}
@@ -22,7 +23,7 @@ export default async function Timeline() {
       <div id="timeline-top" />
       {/* timeline */}
       <section className="relative mx-auto mt-[10vh] w-11/12 max-w-6xl pb-36 md:w-10/12">
-        <TimelineUi timelineEvents={timelineEvents} />
+        <TimelineUi timelineEvents={sortedTimelineEvents} />
       </section>
     </main>
   );
