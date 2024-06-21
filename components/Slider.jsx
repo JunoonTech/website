@@ -19,14 +19,14 @@ const Slider = ({ images, children }) => {
     },
     [totalImages],
   );
-  const nextImage = useCallback(
-    () => setToShow((toShow) => getMod(toShow + 1)),
-    [getMod],
-  );
-  const prevImage = useCallback(
-    () => setToShow((toShow) => getMod(toShow - 1)),
-    [getMod],
-  );
+
+  const nextImage = useCallback(() => {
+    setToShow((toShow) => getMod(toShow + 1));
+  }, [getMod]);
+
+  const prevImage = useCallback(() => {
+    setToShow((toShow) => getMod(toShow - 1));
+  }, [getMod]);
 
   useEffect(() => {
     const handler = setTimeout(nextImage, 10000);
@@ -49,6 +49,7 @@ const Slider = ({ images, children }) => {
       prevImage();
     }
   };
+
   return (
     <div className="slider relative size-full">
       <div
@@ -60,16 +61,19 @@ const Slider = ({ images, children }) => {
         {images.map((image, idx) => {
           const display = idx === toShow;
           return (
-            <div key={image._key} className="absolute left-0 top-0 size-full">
+            <div
+              key={image._key}
+              className="absolute left-0 top-0 size-full"
+              style={{ opacity: display ? 1 : 0, transition: 'opacity 2s ease-in-out' }}
+            >
               <RenderImage
                 image={image}
                 fill
                 style={{
                   objectFit: "cover",
                   objectPosition: "center",
-                  opacity: display ? "100" : "0",
                 }}
-                className="delay-300 duration-[2000ms] ease-in-out"
+                className="size-full"
                 sizes="100vw"
                 priority={idx === 0}
               />
@@ -88,7 +92,6 @@ const Slider = ({ images, children }) => {
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
         {children}
       </div>
-
       <div
         className="absolute bottom-0 left-0 h-1/2 max-h-[200px] w-full bg-repeat-x"
         style={{ backgroundImage: "url(/gradient.png)" }}
@@ -113,7 +116,6 @@ const Slider = ({ images, children }) => {
                   sizes="10rem"
                   priority
                 />
-
                 <div
                   className={twJoin(
                     "absolute left-0 top-0 size-full rounded-full border-2 border-white/40",
@@ -128,5 +130,4 @@ const Slider = ({ images, children }) => {
     </div>
   );
 };
-
 export default Slider;
