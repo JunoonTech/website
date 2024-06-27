@@ -9,6 +9,7 @@ export default function StorygramCards({ storygrams, clamp }) {
       {storygrams.map((storygram) => {
         const formattedDate =
           storygram.date && dayjs(storygram.date).format("D MMM YYYY");
+        const isTextShort = storygram.text.length < 500;
 
         return (
           <div key={storygram._id} className="mb-8 w-3/4 md:mb-5 md:w-5/12 ">
@@ -45,13 +46,20 @@ export default function StorygramCards({ storygrams, clamp }) {
                     clamp && `line-clamp-4`,
                   )}
                 >
-                  {clamp
-                    ? storygram.text
-                    : storygram.text
-                        .split("\n")
-                        .map((text, i) => (
-                          <p key={`${storygram._id}-text-${i}`}>{text}</p>
-                        ))}
+                  {clamp ? (
+                    storygram.text
+                  ) : (
+                    storygram.text
+                      .slice(0, 500)
+                      .split("\n")
+                      .map((text, i, arr) => (
+                        <p key={`${storygram._id}-text-${i}`}>
+                          {text}
+                          {i === arr.length - 1 && !isTextShort && <span>...</span>}
+                        </p>
+                      ))
+                  )}
+                  
                 </div>
                 {formattedDate && (
                   <div className="border-t border-white/10 pt-5 text-xs font-bold uppercase">
