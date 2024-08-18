@@ -1,17 +1,16 @@
-name: Lint
+name: Formatting
 
 on:
   push:
     branches:
-      - main
-      - lint-workflow
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
-  run-linters:
-    name: Run linters
+  linter:
+    name: Linter
     runs-on: ubuntu-latest
     steps:
       - name: Check out Git repository
