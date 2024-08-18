@@ -141,3 +141,7 @@ h4 {
 ::-webkit-scrollbar-thumb {
   @apply bg-gray-600 rounded-md;
 }
+
+.react-pdf__Page__annotations.annotationLayer {
+  display: none;
+}
