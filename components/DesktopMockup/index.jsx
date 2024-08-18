@@ -5,7 +5,7 @@ import RenderImage from "../RenderImage";
 const DesktopMockup = ({ image }) => {
   return (
     <div className="relative w-full">
-      <div className="absolute left-[10%] top-[2%] h-[88%] w-[80%]">
+      <div className="absolute left-[10%] top-[2%] h-[88%] w-4/5">
         <RenderImage
           image={image}
           fill
