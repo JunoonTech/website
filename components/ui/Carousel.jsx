@@ -18,7 +18,7 @@ const Carousel = ({ children }) => {
   const onPrev = () => {
     const newItems = [...items];
     const last = newItems[newItems.length - 1];
-    newItems.unshift({ ...last, id: newItems[0]._id - 1 });
+    newItems.unshift({ ...last, id: newItems[0].id - 1 });
 
     setItems(newItems);
 
@@ -31,6 +31,7 @@ const Carousel = ({ children }) => {
     setItems((items) => {
       const newItems = [...items];
       const first = newItems.shift();
+      first.id = newItems[newItems.length - 1].id + 1;
       newItems.push(first);
       return newItems.map((item, idx) => ({ ...item, id: idx }));
     });
@@ -42,11 +43,12 @@ const Carousel = ({ children }) => {
         <FaArrowCircleLeft className="size-6" />
       </button>
       <div className="flex grow gap-6 overflow-hidden">
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="popLayout">
           {items.map((item) => (
             <motion.div
-              key={`item-${item._id}`}
-              transition={{ type: "tween" }}
+              layout
+              key={`item-${item.id}`}
+              exit={{ opacity: 0, scale: 0.5 }}
               className="shrink-0"
             >
               {item.component}

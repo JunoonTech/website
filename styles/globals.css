@@ -5,9 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  @apply transition-all;
-}
 html {
   scroll-behavior: smooth;
 }
