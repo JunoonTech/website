@@ -33,7 +33,7 @@ const Carousel = ({ children }) => {
       const first = newItems.shift();
       first.id = newItems[newItems.length - 1].id + 1;
       newItems.push(first);
-      return newItems.map((item, idx) => ({ ...item, id: idx }));
+      return newItems;
     });
   };
 
