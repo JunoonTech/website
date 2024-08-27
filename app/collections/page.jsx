@@ -9,9 +9,14 @@ export default async function Collections() {
     collections,
     (collection) => (collection.year = dayjs(collection.date).year()),
   );
+
+  const sortedCollectionGroups = Object.entries(collectionGroups).sort(
+    ([yearA], [yearB]) => yearB - yearA
+  );
+
   return (
     <main className="bg-lightest text-dark">
-      {Object.entries(collectionGroups).map(([year, collections]) => {
+      {sortedCollectionGroups.map(([year, collections]) => {
         return (
           <div key={year}>
             <div className="m-7 text-center text-3xl">{year}</div>
