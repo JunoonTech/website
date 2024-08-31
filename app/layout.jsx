@@ -30,8 +30,7 @@ export default async function Layout({ children }) {
       <body className="flex min-h-screen flex-col bg-darker text-lightest ">
         <Providers>
           <Header />
-          <div className="grow">{children}</div>
-
+          {children}
           <Footer />
         </Providers>
       </body>
