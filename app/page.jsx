@@ -57,11 +57,11 @@ export default async function Home() {
           <div className="stats flex w-full flex-wrap justify-center px-4">
             {about.stats.map((stat) => (
               <div
-                key={stat._id}
+                key={stat._key}
                 className="w-full text-center sm:w-1/2 md:w-1/3"
               >
+                {console.log(stat)}
                 <AnimateNum value={stat.number} />
-
                 <span className="text-xs md:text-base">{stat.title}</span>
               </div>
             ))}
@@ -75,7 +75,7 @@ export default async function Home() {
           </h1>
           <div className="grid w-full gap-8 md:grid-cols-3 md:gap-y-16">
             {featured.map((shot) => (
-              <div key={shot._id} className="relative bg-darkest pb-6 pt-3">
+              <div key={shot._key} className="relative bg-darkest pb-6 pt-3">
                 <RenderImage
                   image={shot.image}
                   sizes="(max-width: 768px) 100vw, 30vw"

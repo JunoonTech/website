@@ -27,7 +27,7 @@ export const metadata = {
 export default async function Layout({ children }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col bg-lightest text-dark">
+      <body className="flex min-h-screen flex-col bg-darker text-lightest ">
         <Providers>
           <Header />
           <div className="grow">{children}</div>

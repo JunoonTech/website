@@ -123,7 +123,7 @@ h4 {
 }
 
 .btn {
-  @apply inline-block border-2 px-6 py-3 border-white rounded-full font-bold uppercase text-sm;
+  @apply inline-block border-2 px-6 py-2 border-white rounded-full font-bold uppercase text-sm;
 }
 
 /* width */

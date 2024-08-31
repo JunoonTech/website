@@ -11,16 +11,16 @@ export default async function Collections() {
   );
 
   const sortedCollectionGroups = Object.entries(collectionGroups).sort(
-    ([yearA], [yearB]) => yearB - yearA
+    ([yearA], [yearB]) => yearB - yearA,
   );
 
   return (
-    <main className="bg-lightest text-dark">
+    <main className="p-6 pt-12">
       {sortedCollectionGroups.map(([year, collections]) => {
         return (
           <div key={year}>
             <div className="m-7 text-center text-3xl">{year}</div>
-            <div className="flex flex-wrap items-center justify-around">
+            <div className="flex flex-wrap items-center justify-around gap-20">
               {collections.map((collection) => {
                 return (
                   <CollectionCard

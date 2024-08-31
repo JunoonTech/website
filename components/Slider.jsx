@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import RenderImage from "./RenderImage";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
-import { twJoin } from "tailwind-merge";
+import { twJoin, twMerge } from "tailwind-merge";
 
 const Slider = ({ images, children }) => {
   const totalImages = images.length;
@@ -63,17 +63,15 @@ const Slider = ({ images, children }) => {
           return (
             <div
               key={image._key}
-              className="absolute left-0 top-0 size-full"
-              style={{ opacity: display ? 1 : 0, transition: 'opacity 2s ease-in-out' }}
+              className={twMerge(
+                "absolute left-0 top-0 size-full transition-opacity duration-1000",
+                !display && "opacity-0",
+              )}
             >
               <RenderImage
                 image={image}
                 fill
-                style={{
-                  objectFit: "cover",
-                  objectPosition: "center",
-                }}
-                className="size-full"
+                className="size-full object-cover object-center"
                 sizes="100vw"
                 priority={idx === 0}
               />
@@ -108,11 +106,7 @@ const Slider = ({ images, children }) => {
                 <RenderImage
                   image={image}
                   fill
-                  style={{
-                    objectFit: "cover",
-                    objectPosition: "center",
-                  }}
-                  className="rounded-full"
+                  className="rounded-full object-cover object-center"
                   sizes="10rem"
                   priority
                 />

@@ -9,7 +9,7 @@ const Radio = ({ options, selectedValue, onChange }) => {
           <li
             key={`option-${option}`}
             className={twMerge(
-              "cursor-pointer px-4 py-2 bg-white capitalize",
+              "cursor-pointer px-4 py-2 bg-white text-dark capitalize",
               selected && "bg-blue-400 text-white",
             )}
             onClick={() => onChange(option)}

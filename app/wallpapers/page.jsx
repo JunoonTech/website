@@ -7,7 +7,7 @@ export default async function Wallpapers() {
   const logoOnlyWhite = await fetchLogo("logo-only-white");
 
   return (
-    <main className="min-h-screen max-w-full bg-lightest text-dark">
+    <main className="min-h-screen max-w-full">
       <div className="mx-auto max-w-5xl pb-24">
         <h1 className="mb-10 text-center">WALLPAPERS</h1>
         <WallpapersUi wallpapers={wallpapers} logoOnlyWhite={logoOnlyWhite} />
