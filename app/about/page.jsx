@@ -10,6 +10,8 @@ import fetchData from "@/lib/sanity/fetchData";
 import fetchTeam from "@/lib/sanity/fetchTeam";
 import Carousel from "@/components/ui/Carousel";
 
+export const revalidate = 2592000;
+
 export default async function About() {
   const team = await fetchTeam();
   await fetchData("team");
@@ -33,7 +35,7 @@ export default async function About() {
             <div className="relative z-10 flex flex-wrap items-center justify-center py-6 text-white">
               <div className="mb-5 w-full text-3xl font-bold">{team.name}</div>
               <div className="w-full">
-                Co-ordinator Incharge - {team.coordinator}
+                Faculty Incharge - {team.coordinator}
               </div>
               <div className="w-full p-5 text-3xl font-bold">Seniors</div>
               {team.members.map((member) => (
