@@ -1,8 +1,9 @@
 import RenderImage from "./RenderImage";
+import SpotlightCard from "./SpotlightCard";
 
 const DevCard = ({ developer }) => {
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-dark bg-darkest">
+    <SpotlightCard className="flex flex-col border-dark">
       <div className="p-6">
         <div className="relative size-36 overflow-hidden rounded-full shadow-lg">
           <RenderImage
@@ -17,7 +18,7 @@ const DevCard = ({ developer }) => {
         <h3 className="mb-3">{developer.firstName}</h3>
         <p className="mb-5">{developer.title}</p>
       </div>
-    </div>
+    </SpotlightCard>
   );
 };
 

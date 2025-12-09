@@ -2,7 +2,6 @@ import CollectionCard from "@/components/CollectionCard";
 import fetchData from "@/lib/sanity/fetchData";
 import dayjs from "dayjs";
 import _ from "lodash";
-import TiltWrapper from "@/components/TiltWrapper";
 
 export default async function Collections() {
   const collections = await fetchData("collection");
@@ -29,9 +28,7 @@ export default async function Collections() {
             <div className="m-7 text-center text-3xl">{year}</div>
             <div className="flex flex-wrap items-center justify-around gap-20">
               {sortedCollections.map((collection) => (
-                <TiltWrapper key={collection._id}>
-                  <CollectionCard collection={collection} />
-                </TiltWrapper>
+                <CollectionCard key={collection._id} collection={collection} />
               ))}
             </div>
           </div>

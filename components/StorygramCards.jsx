@@ -2,6 +2,7 @@ import Link from "next/link";
 import RenderImage from "./RenderImage";
 import dayjs from "dayjs";
 import { twJoin } from "tailwind-merge";
+import SpotlightCard from "./SpotlightCard";
 
 export default function StorygramCards({ storygrams, clamp }) {
   return (
@@ -13,7 +14,7 @@ export default function StorygramCards({ storygrams, clamp }) {
 
         return (
           <div key={storygram._id} className="mb-8 w-3/4 md:mb-5 md:w-5/12 ">
-            <div className="flex h-full flex-col overflow-hidden rounded-md bg-darkest">
+            <SpotlightCard className="flex h-full flex-col rounded-md border-transparent">
               <Link
                 href={storygram.link || "#"}
                 className="relative block aspect-video w-full"
@@ -67,7 +68,7 @@ export default function StorygramCards({ storygrams, clamp }) {
                   </div>
                 )}
               </div>
-            </div>
+            </SpotlightCard>
           </div>
         );
       })}

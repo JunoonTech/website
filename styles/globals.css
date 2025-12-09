@@ -145,3 +145,20 @@ h4 {
 .react-pdf__Page__annotations.annotationLayer {
   display: none;
 }
+
+/* PDF scaling for mobile */
+.react-pdf__Document {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.react-pdf__Page {
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+.react-pdf__Page__canvas {
+  max-width: 100% !important;
+  height: auto !important;
+}
