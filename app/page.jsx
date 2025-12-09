@@ -6,6 +6,7 @@ import Div100vh from "@/components/Div100vh";
 import StorygramCards from "@/components/StorygramCards";
 import fetchData from "@/lib/sanity/fetchData";
 import fetchLogo from "@/lib/sanity/fetchLogo";
+import ParallaxImage from "@/components/ParallaxImage";
 
 export default async function Home() {
   const homeData = await fetchData("home");
@@ -76,9 +77,9 @@ export default async function Home() {
           <div className="grid w-full gap-8 md:grid-cols-3 md:gap-y-16">
             {featured.map((shot) => (
               <div key={shot._key} className="relative bg-darkest pb-6 pt-3">
-                <RenderImage
+                <ParallaxImage
                   image={shot.image}
-                  sizes="(max-width: 768px) 100vw, 30vw"
+                  className="aspect-[4/3] w-full"
                 />
                 <div className="absolute left-0 top-0 size-full opacity-0 duration-1000 hover:opacity-100">
                   {shot.instaHandle && (
