@@ -2,6 +2,8 @@ import StorygramCards from "@/components/StorygramCards";
 import fetchData from "@/lib/sanity/fetchData";
 import Pagination from "@/components/Pagination";
 
+export const revalidate = 0;
+
 export default async function Storygram({ searchParams }) {
   const pageSize = 8;
   const currentPage = parseInt(searchParams.page || "1", 10);

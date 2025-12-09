@@ -2,6 +2,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Providers from "@/providers";
 import "@/styles/globals.css";
+import SmoothScrolling from "@/components/SmoothScrolling";
+
 export const viewport = {
   themeColor: "#000000",
 };
@@ -28,11 +30,13 @@ export default async function Layout({ children }) {
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col bg-darker text-lightest ">
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-        </Providers>
+        <SmoothScrolling>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </SmoothScrolling>
       </body>
     </html>
   );
