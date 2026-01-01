@@ -1,7 +1,11 @@
 "use client";
 import { useRef, useState } from "react";
 
-export default function SpotlightCard({ children, className = "", spotlightColor = "rgba(156, 205, 126, 0.25)" }) {
+export default function SpotlightCard({
+  children,
+  className = "",
+  spotlightColor = "rgba(156, 205, 126, 0)",
+}) {
   const divRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);

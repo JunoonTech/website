@@ -9,15 +9,20 @@ export default function Menu({ navbarLinks }) {
   return (
     <div
       className={twMerge(
-        "overflow-hidden duration-700",
-        menuOpen ? "max-h-80" : "max-h-0",
+        "overflow-hidden transition-all duration-500 ease-in-out",
+        menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
       )}
     >
-      <ul className="px-6 pb-2.5">
+      <ul className="flex flex-col gap-2 px-6 py-6">
         {navbarLinks &&
           navbarLinks.map((navbarLink) => (
-            <li key={navbarLink._id} className="my-1 font-bold leading-7">
-              <Link href={navbarLink.link}>{navbarLink.name}</Link>
+            <li key={navbarLink._id} className="border-b border-white/5 pb-2 last:border-none">
+              <Link 
+                href={navbarLink.link} 
+                className="block text-lg font-bold tracking-wide text-gray-300 hover:text-neon-green hover:pl-2 transition-all duration-300"
+              >
+                {navbarLink.name}
+              </Link>
             </li>
           ))}
       </ul>

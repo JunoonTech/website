@@ -1,5 +1,3 @@
-import RenderImage from "@/components/RenderImage";
-import SocialLinks from "@/components/SocialLinks";
 import DevCard from "@/components/DevCard";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,80 +17,120 @@ export default async function About() {
   const departments = await fetchData("department");
 
   return (
-    <main className="mx-auto w-11/12 max-w-5xl">
-      {/* team */}
-      <div className="mb-40 mt-24">
-        <h1 className="mb-5 text-center">Meet the Team</h1>
-        <div className="rounded-md bg-dark p-10 pb-5 text-center">
-          <div className="relative mb-2">
-            {/* image */}
-            <div className="absolute left-0 top-0 size-full overflow-hidden">
-              <RenderImage image={team.backgroundImage} />
-            </div>
-            {/* content */}
-            <div className="relative z-10 flex flex-wrap items-center justify-center py-6 text-white">
-              <div className="mb-5 w-full text-3xl font-bold">{team.name}</div>
-              <div className="w-full">
-                Faculty Incharge - {team.coordinator}
-              </div>
-              <div className="w-full p-5 text-3xl font-bold">Seniors</div>
-              {team.members.map((member) => (
-                <div key={member._id} className="mx-5 whitespace-nowrap">
-                  {member.firstName} {member.lastName} - {member.designation}
+    <main className="min-h-screen bg-darker pb-20 text-white overflow-x-hidden">
+      {/* hero section */}
+      <div className="relative h-[60vh] w-full overflow-hidden">
+        <div className="absolute left-0 w-full z-0 -top-12 h-[115%]">
+          <ParallaxImage
+            image={team.backgroundImage}
+            className="h-full w-full"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-darker" />
+        </div>
+
+        <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
+          <h1 className="text-5xl font-bold tracking-wider text-white drop-shadow-xl md:text-7xl">
+            {team.name}
+          </h1>
+          <p className="mt-4 rounded-full bg-black/30 px-4 py-1 text-xl font-medium text-gray-200 backdrop-blur-sm">
+            Faculty Incharge - {team.coordinator}
+          </p>
+        </div>
+      </div>
+
+      <div className="mx-auto w-11/12 max-w-6xl">
+        <div className="-mt-20 relative z-20 mb-32">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {team.members.map((member) => (
+              <SpotlightCard
+                key={member._id}
+                className="group relative flex items-center justify-between border border-white/10 bg-darkest/90 px-5 py-4 transition-all hover:bg-white/5 hover:border-neon-green/30"
+                spotlightColor="rgba(156, 205, 126, 0)"
+              >
+                <div className="flex flex-col">
+                  <span className="font-bold text-sm text-white group-hover:text-neon-green transition-colors">
+                    {member.firstName} {member.lastName}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                    {member.designation}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-          <h3 className="mb-2">{team.descriptionHead}</h3>
-          <h4 className="mb-4">{team.descriptionSubhead}</h4>
-          <div className="flex justify-center">
-            <SocialLinks />
-          </div>
-        </div>
-      </div>
-
-      {/* reels */}
-      {reels.pdf && (
-        <div className="mb-20">
-          <Pdf doc={reels.pdf.asset} />
-        </div>
-      )}
-      {/* developers */}
-      {developers && developers.length > 0 && (
-        <div className="mb-40">
-          <h1 className="mb-10 text-center">Developers</h1>
-          <Carousel>
-            {developers.map((developer) => (
-              <DevCard key={developer._id} developer={developer} />
+              </SpotlightCard>
             ))}
-          </Carousel>
+          </div>
         </div>
-      )}
 
-      {/* projects */}
-      <div className="mb-40">
-        <h1 className="mb-2 text-center">Our Projects</h1>
-        <div className="flex flex-wrap justify-center">
-          {projects.map((project) => (
-            <div key={project._id} className="w-full p-5 md:w-1/2">
-              <h3 className="mb-5 text-center">{project.name}</h3>
-              <div className="text-justify">{project.description}</div>
+        {/* developers */}
+        {developers && developers.length > 0 && (
+          <div className="mb-20 -mt-16">
+            <h2 className="mb-16 text-center text-4xl font-bold tracking-tight">
+              The Developers
+            </h2>
+            <div className="relative">
+              <div className="absolute -z-10 inset-0 rounded-full bg-neon-green/5 blur-3xl"></div>
+              <Carousel>
+                {developers.map((developer) => (
+                  <DevCard key={developer._id} developer={developer} />
+                ))}
+              </Carousel>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        )}
 
-      {/* departments */}
-      <div className="mb-40">
-        <h1 className="mb-2 text-center">Our departments</h1>
-        <div className="flex flex-wrap justify-center">
-          {departments.map((department) => (
-            <div key={department._id} className="w-full p-5 md:w-1/2">
-              <h3 className="mb-5 text-center">{department.name}</h3>
-              <div className="text-justify">{department.description}</div>
-            </div>
-          ))}
+        {/* projects */}
+        <div className="mb-32">
+          <div className="mb-12 flex items-center gap-4">
+            <div className="h-10 w-2 bg-neon-green"></div>
+            <h2 className="text-4xl font-bold text-white">Our Projects</h2>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {projects.map((project) => (
+              <SpotlightCard
+                key={project._id}
+                className="h-full bg-darkest p-8 transition-colors hover:bg-white/5"
+              >
+                <h3 className="mb-4 text-2xl font-bold text-white">
+                  {project.name}
+                </h3>
+                <div className="h-1 w-12 bg-white/20 mb-4"></div>
+                <p className="text-sm leading-7 text-gray-400">
+                  {project.description}
+                </p>
+              </SpotlightCard>
+            ))}
+          </div>
         </div>
+
+        {/* departments */}
+        <div className="mb-32 -mt-12">
+          <div className="mb-12 flex items-center justify-end gap-4 text-right">
+            <h2 className="text-4xl font-bold text-white">Departments</h2>
+            <div className="h-10 w-2 bg-neon-green"></div>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {departments.map((department) => (
+              <SpotlightCard
+                key={department._id}
+                className="h-full bg-darkest p-8 transition-colors hover:bg-white/5"
+              >
+                <h3 className="mb-4 text-2xl font-bold text-white">
+                  {department.name}
+                </h3>
+                <div className="h-1 w-12 bg-white/20 mb-4"></div>
+                <p className="text-sm leading-7 text-gray-400">
+                  {department.description}
+                </p>
+              </SpotlightCard>
+            ))}
+          </div>
+        </div>
+
+        {/* reels */}
+        {reels.pdf && (
+          <div className="mb-20">
+            <Pdf doc={reels.pdf.asset} />
+          </div>
+        )}
       </div>
     </main>
   );
