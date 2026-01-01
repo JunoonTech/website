@@ -7,6 +7,8 @@ import Pdf from "@/components/Pdf";
 import fetchData from "@/lib/sanity/fetchData";
 import fetchTeam from "@/lib/sanity/fetchTeam";
 import Carousel from "@/components/ui/Carousel";
+import ParallaxImage from '@/components/ParallaxImage';
+import SpotlightCard from '@/components/SpotlightCard';
 
 export default async function About() {
   const team = await fetchTeam();
@@ -23,7 +25,7 @@ export default async function About() {
         <div className="absolute left-0 w-full z-0 -top-12 h-[115%]">
           <ParallaxImage
             image={team.backgroundImage}
-            className="h-full w-full"
+            className="size-full"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-darker" />
         </div>

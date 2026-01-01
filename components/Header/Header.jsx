@@ -6,7 +6,7 @@ import fetchLogo from "@/lib/sanity/fetchLogo";
 import MenuButton from "./MenuButton";
 import Menu from "./Menu";
 
-export default async function Header({ white }) {
+export default async function Header() {
   const navbarLinks = await fetchData("navbarLink");
   const fullWhite = await fetchLogo("full-white");
 

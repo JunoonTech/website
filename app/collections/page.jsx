@@ -16,7 +16,7 @@ export default async function Collections() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-darker pb-24 pt-32 text-white">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon-green/10 blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-0 size-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon-green/10 blur-[120px]" />
 
       <div className="mx-auto w-11/12 max-w-6xl">
         <div className="mb-20 text-center">
