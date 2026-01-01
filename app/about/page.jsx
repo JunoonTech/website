@@ -10,8 +10,6 @@ import fetchData from "@/lib/sanity/fetchData";
 import fetchTeam from "@/lib/sanity/fetchTeam";
 import Carousel from "@/components/ui/Carousel";
 
-export const revalidate = 60;
-
 export default async function About() {
   const team = await fetchTeam();
   await fetchData("team");
