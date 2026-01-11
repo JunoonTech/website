@@ -7,14 +7,12 @@ import Pdf from "@/components/Pdf";
 import fetchData from "@/lib/sanity/fetchData";
 import fetchTeam from "@/lib/sanity/fetchTeam";
 import Carousel from "@/components/ui/Carousel";
-import ParallaxImage from '@/components/ParallaxImage';
-import SpotlightCard from '@/components/SpotlightCard';
+import ParallaxImage from "@/components/ParallaxImage";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export default async function About() {
   const team = await fetchTeam();
-  await fetchData("team");
   const reels = await fetchData("reel");
-  const developers = await fetchData("developer");
   const projects = await fetchData("project");
   const departments = await fetchData("department");
 
@@ -25,7 +23,7 @@ export default async function About() {
         <div className="absolute left-0 w-full z-0 -top-12 h-[115%]">
           <ParallaxImage
             image={team.backgroundImage}
-            className="size-full"
+            className="h-full w-full"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-darker" />
         </div>
@@ -63,15 +61,15 @@ export default async function About() {
         </div>
 
         {/* developers */}
-        {developers && developers.length > 0 && (
+        {team.developers && team.developers.length > 0 && (
           <div className="mb-20 -mt-16">
             <h2 className="mb-16 text-center text-4xl font-bold tracking-tight">
-              The Developers
+              <span className="text-neon-green">/</span> The Developers
             </h2>
             <div className="relative">
               <div className="absolute -z-10 inset-0 rounded-full bg-neon-green/5 blur-3xl"></div>
               <Carousel>
-                {developers.map((developer) => (
+                {team.developers.map((developer) => (
                   <DevCard key={developer._id} developer={developer} />
                 ))}
               </Carousel>
