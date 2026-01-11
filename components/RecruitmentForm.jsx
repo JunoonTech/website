@@ -4,6 +4,8 @@ import { signOut } from "next-auth/react";
 import RenderImage from "./RenderImage";
 import { submitApplication } from "@/app/recruitment/actions";
 
+const MAX_FILE_SIZE = 10 * 1024 * 1024; 
+
 export default function RecruitmentForm({ positions, user }) {
   const [selectedPosition, setSelectedPosition] = useState(positions[0]);
   const [status, setStatus] = useState("idle");
@@ -20,6 +22,19 @@ export default function RecruitmentForm({ positions, user }) {
       type: q.fieldType,
     }));
 
+    for (const q of questionKeys) {
+      if (q.type === "image upload") {
+        const file = formData.get(q.text);
+        if (file && file instanceof File && file.size > MAX_FILE_SIZE) {
+          setStatus("error");
+          setErrorMessage(
+            `The file for "${q.text}" is too large (Max 10MB). Please upload a smaller image.`
+          );
+          return;
+        }
+      }
+    }
+
     formData.append("questionKeys", JSON.stringify(questionKeys));
     formData.append("positionId", selectedPosition._id);
 
@@ -32,8 +47,9 @@ export default function RecruitmentForm({ positions, user }) {
         setErrorMessage(result.error || "Failed to submit application.");
       }
     } catch (err) {
+      console.error("Client-side submission error:", err);
       setStatus("error");
-      setErrorMessage("An unexpected error occurred. Please try again.");
+      setErrorMessage("An unexpected error occurred. Please check your internet connection.");
     }
   }
 
@@ -70,7 +86,7 @@ export default function RecruitmentForm({ positions, user }) {
             Submit another application
           </button>
           <button
-            onClick={() => signOut({ callbackUrl: "/recruitment" })} //
+            onClick={() => signOut({ callbackUrl: "/recruitment" })}
             className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-red-500 transition-colors"
           >
             Sign Out
@@ -175,6 +191,7 @@ export default function RecruitmentForm({ positions, user }) {
                       className="w-full cursor-pointer text-sm text-gray-400 file:mr-4 file:rounded-full file:border-0 file:bg-neon-green/10 file:px-4 file:py-2 file:text-xs file:font-bold file:text-neon-green hover:file:bg-neon-green hover:file:text-darkest transition-all"
                       required
                     />
+                    <p className="text-[10px] text-gray-600 mt-1">Max file size: 10MB</p>
                   </div>
                 )}
               </div>
